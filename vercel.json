@@ -1,4 +1,12 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "functions": {
+    "api/research.js": { "maxDuration": 120 },
+    "api/cron-refresh.js": { "maxDuration": 120 }
+  },
+  "crons": [
+    { "path": "/api/cron-refresh", "schedule": "0 13 * * 1" }
+  ]
 }

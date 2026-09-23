@@ -114,3 +114,10 @@ function setLanguage(lang){
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
 }
 document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));
+
+// V4: carry a selected LUMA Pulse signal into the campaign brief across pages.
+const pulseTrendParam = new URLSearchParams(window.location.search).get('trend');
+if (pulseTrendParam && briefText) {
+  briefText.value = `Quiero explorar una campaña alrededor de “${pulseTrendParam}”. Objetivo: `;
+  setTimeout(() => briefText.focus(), 650);
+}
