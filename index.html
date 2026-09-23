@@ -27,7 +27,7 @@
         <a href="#brands">Para marcas</a>
         <a href="#creators-side">Para creators</a>
       </nav>
-      <a class="btn btn-dark btn-small" href="#start">Start a campaign</a>
+      <div class="nav-actions"><div class="lang-toggle" aria-label="Language"><button class="lang-btn active" data-lang="es">ES</button><button class="lang-btn" data-lang="en">EN</button></div><a class="btn btn-dark btn-small" href="#start" data-i18n="startCampaign">Iniciar campaña</a></div>
       <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">☰</button>
     </div>
     <nav class="mobile-nav" id="mobile-nav" aria-label="Móvil">
@@ -35,7 +35,7 @@
       <a href="#pulse">Pulse</a>
       <a href="#brands">Para marcas</a>
       <a href="#creators-side">Para creators</a>
-      <a class="btn btn-dark" href="#start">Start a campaign</a>
+      <div class="lang-toggle mobile-lang" aria-label="Language"><button class="lang-btn active" data-lang="es">ES</button><button class="lang-btn" data-lang="en">EN</button></div><a class="btn btn-dark" href="#start" data-i18n="startCampaign">Iniciar campaña</a>
     </nav>
   </header>
 
@@ -166,7 +166,7 @@
               <div><span>Brand saturation</span><b id="pulse-saturation">Medium</b></div>
               <div><span>Audience fit</span><b id="pulse-audience">F 22–34</b></div>
             </div>
-            <button class="text-button">Build a campaign →</button>
+            <button class="text-button" id="build-campaign" data-i18n="buildCampaign">Construir campaña →</button>
           </div>
           <div class="pulse-tabs" aria-label="Seleccionar señal de tendencia">
             <button class="pulse-tab active" data-title="Pilates lifestyle" data-growth="+63%" data-score="91" data-copy="High creator supply, medium brand saturation and strong affinity with women 22–34." data-supply="High" data-saturation="Medium" data-audience="F 22–34">Pilates lifestyle <b>+63%</b></button>
@@ -181,19 +181,18 @@
     <section class="research-insights section-shell">
       <div class="section-head compact reveal">
         <div>
-          <p class="eyebrow">WHAT THE RESEARCH CHANGED</p>
-          <h2>La AI no reemplaza al creator.<br><em>Le da leverage.</em></h2>
+          <p class="eyebrow" data-i18n="benefitsEyebrow">WHAT BRANDS GET</p>
+          <h2 data-i18n-html="benefitsTitle">Menos hunting.<br><em>Más campañas que conectan.</em></h2>
         </div>
-        <p>La diferenciación no está en “tener AI”. Está en usarla para abrir oportunidades, reducir trabajo operativo y construir aprendizaje propietario campaña tras campaña.</p>
+        <p data-i18n="benefitsIntro">LUMA convierte señales culturales y talento emergente en decisiones de campaña más rápidas, claras y accionables para tu equipo.</p>
       </div>
-
       <div class="insights-grid">
-        <article class="insight reveal"><span>01</span><h3>Long-tail representation</h3><p>El hueco más interesante es comercial: creadores con buena audiencia pero sin ventas, CRM, pricing intelligence ni manager.</p></article>
-        <article class="insight reveal delay-1"><span>02</span><h3>AI behind the scenes</h3><p>Research, matching, briefs, follow-ups y reporting pueden acelerarse con AI; la creatividad y relación siguen siendo humanas.</p></article>
-        <article class="insight reveal delay-2"><span>03</span><h3>Human approval by design</h3><p>Pricing sensible, contratos, exclusividad, claims y brand safety requieren aprobación humana y trazabilidad.</p></article>
-        <article class="insight reveal"><span>04</span><h3>Measure what matters</h3><p>Views medianas, saves, shares, audiencia, fit y performance vs. baseline dicen más que seguidores aislados.</p></article>
-        <article class="insight reveal delay-1"><span>05</span><h3>Near-real-time, not magic</h3><p>Pulse debe trabajar con fuentes permitidas, datos conectados y consentimiento. La promesa es inteligencia útil, no acceso imposible.</p></article>
-        <article class="insight reveal delay-2"><span>06</span><h3>Data becomes the moat</h3><p>Cada campaña alimenta un grafo propio: marca ↔ creator ↔ precio ↔ contenido ↔ performance ↔ repeat intent.</p></article>
+        <article class="insight reveal"><span>01</span><h3 data-i18n="b1t">Talento antes de que se sature</h3><p data-i18n="b1p">Descubre creators de nicho con comunidades reales antes de que lleguen a todos los mismos briefs.</p></article>
+        <article class="insight reveal delay-1"><span>02</span><h3 data-i18n="b2t">Shortlists con contexto</h3><p data-i18n="b2p">Recibe una selección explicada por afinidad, audiencia, contenido y señales de performance; no una lista interminable de perfiles.</p></article>
+        <article class="insight reveal delay-2"><span>03</span><h3 data-i18n="b3t">Menos coordinación</h3><p data-i18n="b3p">Centralizamos outreach, disponibilidad, brief, entregables y seguimiento para que marketing no persiga mensajes y hojas de cálculo.</p></article>
+        <article class="insight reveal"><span>04</span><h3 data-i18n="b4t">Mejor lectura de resultados</h3><p data-i18n="b4p">Compara views, saves, shares, audiencia y performance contra el objetivo de campaña, no sólo seguidores.</p></article>
+        <article class="insight reveal delay-1"><span>05</span><h3 data-i18n="b5t">Señales para actuar antes</h3><p data-i18n="b5p">Pulse ayuda a detectar conversaciones y formatos en crecimiento para encontrar un ángulo de marca mientras todavía se siente fresco.</p></article>
+        <article class="insight reveal delay-2"><span>06</span><h3 data-i18n="b6t">Cada campaña aprende</h3><p data-i18n="b6p">Tus siguientes recomendaciones mejoran con lo que funcionó: creator fit, formatos, audiencias y resultados previos.</p></article>
       </div>
     </section>
 
@@ -219,27 +218,27 @@
         <article class="creator-card reveal" data-category="lifestyle">
           <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=850&q=86" alt="Retrato de creadora lifestyle" />
           <div class="creator-overlay"><span class="signal-pill">✦ Rising signal</span></div>
-          <div class="creator-body"><div><h3>Mika Tanaka</h3><span>Fashion · Lifestyle</span></div><div class="creator-stats"><span><b>38K</b> followers</span><span><b>6.4%</b> engagement</span></div><p>Minimal style. Everyday culture.</p></div>
+          <div class="creator-body"><div><h3>Mariana Torres</h3><span>Fashion · Lifestyle · CDMX</span></div><div class="creator-stats"><span><b>38K</b> followers</span><span><b>6.4%</b> engagement</span></div><p>@marianatorres.mx · Estilo cotidiano, cultura local.</p></div>
         </article>
         <article class="creator-card reveal delay-1" data-category="fitness">
           <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=850&q=86" alt="Retrato de creador fitness" />
           <div class="creator-overlay"><span class="signal-pill dark">Strong fit</span></div>
-          <div class="creator-body"><div><h3>Jalen Carter</h3><span>Fitness · Wellness</span></div><div class="creator-stats"><span><b>61K</b> followers</span><span><b>5.9%</b> engagement</span></div><p>Movement, consistency, community.</p></div>
+          <div class="creator-body"><div><h3>Diego Salazar</h3><span>Fitness · Wellness · Monterrey</span></div><div class="creator-stats"><span><b>61K</b> followers</span><span><b>5.9%</b> engagement</span></div><p>@diegosalazar.fit · Movimiento, constancia, comunidad.</p></div>
         </article>
         <article class="creator-card reveal delay-2" data-category="food">
           <img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=850&q=86" alt="Creadora food en restaurante" />
           <div class="creator-overlay"><span class="signal-pill">✦ Food momentum</span></div>
-          <div class="creator-body"><div><h3>Sofi Martínez</h3><span>Food · Coffee</span></div><div class="creator-stats"><span><b>27K</b> followers</span><span><b>7.1%</b> engagement</span></div><p>Places worth sharing.</p></div>
+          <div class="creator-body"><div><h3>Sofía Martínez</h3><span>Food · Coffee · Guadalajara</span></div><div class="creator-stats"><span><b>27K</b> followers</span><span><b>7.1%</b> engagement</span></div><p>@sofiacome · Lugares que vale la pena compartir.</p></div>
         </article>
         <article class="creator-card reveal" data-category="travel">
           <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=850&q=86" alt="Retrato de creador travel" />
           <div class="creator-overlay"><span class="signal-pill dark">Travel pulse</span></div>
-          <div class="creator-body"><div><h3>Noah Kim</h3><span>Travel · Experiences</span></div><div class="creator-stats"><span><b>54K</b> followers</span><span><b>5.6%</b> engagement</span></div><p>Less itinerary. More story.</p></div>
+          <div class="creator-body"><div><h3>Mateo Ríos</h3><span>Travel · Experiences · Mérida</span></div><div class="creator-stats"><span><b>54K</b> followers</span><span><b>5.6%</b> engagement</span></div><p>@mateorios.mx · Menos itinerario. Más historia.</p></div>
         </article>
         <article class="creator-card reveal delay-1" data-category="beauty">
           <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=850&q=86" alt="Retrato de creadora beauty" />
           <div class="creator-overlay"><span class="signal-pill">✦ Beauty fit</span></div>
-          <div class="creator-body"><div><h3>Leah Zhou</h3><span>Beauty · Wellness</span></div><div class="creator-stats"><span><b>44K</b> followers</span><span><b>6.8%</b> engagement</span></div><p>Beauty that feels like real life.</p></div>
+          <div class="creator-body"><div><h3>Valentina Cruz</h3><span>Beauty · Wellness · CDMX</span></div><div class="creator-stats"><span><b>44K</b> followers</span><span><b>6.8%</b> engagement</span></div><p>@valentinacruz · Belleza que se siente real.</p></div>
         </article>
       </div>
     </section>
@@ -281,11 +280,15 @@
         <div class="start-mark"><img src="assets/luma-mark.svg" alt="" /></div>
         <p class="eyebrow">CREATORS TODAY. BRIGHTER TOMORROW.</p>
         <h2>Bring us the brief.<br><em>We’ll bring the culture.</em></h2>
-        <p>Empieza con una campaña piloto pequeña: creator mix curado, ejecución end-to-end y aprendizaje real antes de construir algo más grande.</p>
-        <div class="hero-actions centered">
-          <a class="btn btn-dark" href="mailto:hello@lumacreators.mx?subject=LUMA%20Campaign%20Brief">Launch a campaign</a>
-          <a class="btn btn-ghost" href="mailto:creators@lumacreators.mx?subject=Join%20LUMA">I’m a creator</a>
-        </div>
+        <p data-i18n="startCopy">Cuéntanos qué quieres mover. En menos de dos minutos puedes dejarnos un brief inicial y te llevamos al canal activo de LUMA para continuar la conversación.</p>
+        <form class="brief-form" id="brief-form">
+          <div class="form-row"><label><span data-i18n="nameLabel">Nombre</span><input required name="name" autocomplete="name" placeholder="Tu nombre"></label><label><span data-i18n="brandLabel">Marca</span><input required name="brand" placeholder="Nombre de la marca"></label></div>
+          <div class="form-row"><label><span data-i18n="emailLabel">Email</span><input required type="email" name="email" autocomplete="email" placeholder="tu@marca.com"></label><label><span data-i18n="budgetLabel">Presupuesto aproximado</span><select name="budget"><option>$20K–$50K MXN</option><option>$50K–$100K MXN</option><option>$100K–$250K MXN</option><option>$250K+ MXN</option><option data-i18n="exploring">Aún explorando</option></select></label></div>
+          <label><span data-i18n="briefLabel">¿Qué quieres lograr?</span><textarea required name="brief" id="brief-text" rows="4" placeholder="Producto, audiencia, ciudad, objetivo y fechas..."></textarea></label>
+          <div class="brief-actions"><button class="btn btn-dark" type="submit" data-i18n="prepareBrief">Preparar brief</button><a class="btn btn-ghost" href="https://www.instagram.com/luma_creators?stkn=eGN3Yzg4OHMwbmlp" target="_blank" rel="noreferrer" data-i18n="instagramContact">Contactar por Instagram ↗</a></div>
+          <p class="form-note" id="form-note" data-i18n="formNote">Al enviar, preparamos tu brief para copiarlo y abrimos el Instagram oficial de LUMA para que puedas enviarlo por DM. No dependemos de un correo o dominio no verificado.</p>
+        </form>
+        <div class="creator-contact"><span data-i18n="creatorQuestion">¿Eres creator?</span> <a href="https://www.instagram.com/luma_creators?stkn=eGN3Yzg4OHMwbmlp" target="_blank" rel="noreferrer" data-i18n="creatorDm">Escríbenos “CREATOR” por DM →</a></div>
       </div>
     </section>
   </main>
@@ -295,7 +298,7 @@
       <a class="brand" href="#top"><img src="assets/luma-mark.svg" alt="" /><span class="brand-copy"><b>LUMA</b><small>CREATORS</small></span></a>
       <p>REAL PEOPLE. BRIGHTER BRANDS.</p>
     </div>
-    <div class="footer-links"><a href="#creators">Creators</a><a href="#pulse">Pulse</a><a href="#brands">Brands</a><a href="#creators-side">For creators</a></div>
+    <div class="footer-links"><a href="#creators">Creators</a><a href="#pulse">Pulse</a><a href="#brands">Brands</a><a href="#creators-side">For creators</a><a href="https://www.instagram.com/luma_creators?stkn=eGN3Yzg4OHMwbmlp" target="_blank" rel="noreferrer">Instagram ↗</a></div>
     <div class="sources">
       <span>Research references:</span>
       <a href="https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2026/endutih/ENDUTIH_25_RR.pdf" target="_blank" rel="noreferrer">INEGI ENDUTIH 2025</a>
