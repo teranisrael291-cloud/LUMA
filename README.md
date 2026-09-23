@@ -98,7 +98,7 @@ LUMA_ADMIN_TOKEN=<long-random-secret>
 CRON_SECRET=<another-long-random-secret>
 ```
 
-Vercel supplies `BLOB_READ_WRITE_TOKEN` when the Blob store is connected.
+New Vercel Blob connections use project-scoped OIDC automatically, so `BLOB_READ_WRITE_TOKEN` is not required in production. Legacy/static-token stores and local development can still use `BLOB_READ_WRITE_TOKEN`.
 
 4. Redeploy.
 5. Open `/admin` and click **Ejecutar research engine**.
