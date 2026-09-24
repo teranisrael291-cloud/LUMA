@@ -5,7 +5,8 @@
     "month": "September 2026",
     "updated": "23 Sep 2026",
     "coverage": "México · LATAM · Global",
-    "methodology": "LUMA combines public platform signals, market research and editorial analysis. LUMA Signal is an editorial 0–100 index for the demo; it is not a metric supplied by any platform."
+    "methodology": "Curated-source research + hybrid TF-IDF similarity + unsupervised clustering + TextRank summaries + temporal burst/persistence analysis + calibrated scoring. No generative AI or AI agent.",
+    "engine": "LUMA Signal Engine v8 · classical ML/NLP"
   },
   "trends": [
     {
@@ -44,7 +45,33 @@
         "Google": 62,
         "YouTube": 48,
         "Pinterest": 31
-      }
+      },
+      "archetype": "Cultural moment",
+      "confidence": 75,
+      "audience": "Both",
+      "audienceWhy": "Editorial affinity based on the topic and cultural context; not a platform demographic measurement.",
+      "audienceConfidence": 58,
+      "model": {
+        "momentum": 0.81,
+        "evidence": 0.67,
+        "authority": 0.84,
+        "agreement": 0.62,
+        "burst": 0.74,
+        "persistence": 0.48,
+        "novelty": 0.64,
+        "whitespace": 0.649,
+        "velocity": 86,
+        "ageDays": 6.0
+      },
+      "evidence": [
+        {
+          "title": "Quincena culture",
+          "source": "TikTok Creative Center",
+          "role": "signal",
+          "url": "https://ads.tiktok.com/creative/creativeCenter/trends?region=MX",
+          "publishedAt": "2026-09-23T00:00:00Z"
+        }
+      ]
     },
     {
       "id": "septiembre-mx",
@@ -82,7 +109,33 @@
         "Google": 80,
         "YouTube": 66,
         "Pinterest": 44
-      }
+      },
+      "archetype": "Emerging trend",
+      "confidence": 71,
+      "audience": "Both",
+      "audienceWhy": "Editorial affinity based on the topic and cultural context; not a platform demographic measurement.",
+      "audienceConfidence": 58,
+      "model": {
+        "momentum": 0.74,
+        "evidence": 0.63,
+        "authority": 0.84,
+        "agreement": 0.62,
+        "burst": 0.67,
+        "persistence": 0.48,
+        "novelty": 0.64,
+        "whitespace": 0.673,
+        "velocity": 79,
+        "ageDays": 6.0
+      },
+      "evidence": [
+        {
+          "title": "Mexican identity, remixed",
+          "source": "TikTok Creative Center",
+          "role": "signal",
+          "url": "https://ads.tiktok.com/creative/creativeCenter/trends?region=MX",
+          "publishedAt": "2026-09-23T00:00:00Z"
+        }
+      ]
     },
     {
       "id": "desk-setup",
@@ -120,7 +173,33 @@
         "Google": 55,
         "YouTube": 94,
         "Pinterest": 76
-      }
+      },
+      "archetype": "Emerging trend",
+      "confidence": 68,
+      "audience": "Both",
+      "audienceWhy": "Editorial affinity based on the topic and cultural context; not a platform demographic measurement.",
+      "audienceConfidence": 58,
+      "model": {
+        "momentum": 0.68,
+        "evidence": 0.6,
+        "authority": 0.84,
+        "agreement": 0.62,
+        "burst": 0.61,
+        "persistence": 0.48,
+        "novelty": 0.64,
+        "whitespace": 0.694,
+        "velocity": 73,
+        "ageDays": 6.0
+      },
+      "evidence": [
+        {
+          "title": "The desk as identity",
+          "source": "YouTube Culture & Trends",
+          "role": "signal",
+          "url": "https://blog.youtube/culture-and-trends/desk-setup-videos/",
+          "publishedAt": "2026-09-23T00:00:00Z"
+        }
+      ]
     },
     {
       "id": "bento-prep",
@@ -158,7 +237,33 @@
         "Google": 47,
         "YouTube": 93,
         "Pinterest": 72
-      }
+      },
+      "archetype": "Emerging trend",
+      "confidence": 67,
+      "audience": "Both",
+      "audienceWhy": "Editorial affinity based on the topic and cultural context; not a platform demographic measurement.",
+      "audienceConfidence": 58,
+      "model": {
+        "momentum": 0.66,
+        "evidence": 0.59,
+        "authority": 0.84,
+        "agreement": 0.62,
+        "burst": 0.59,
+        "persistence": 0.48,
+        "novelty": 0.64,
+        "whitespace": 0.702,
+        "velocity": 71,
+        "ageDays": 6.0
+      },
+      "evidence": [
+        {
+          "title": "Calm meal prep",
+          "source": "YouTube Culture & Trends",
+          "role": "signal",
+          "url": "https://blog.youtube/culture-and-trends/youtube-bento-box-meal-prep-trend/",
+          "publishedAt": "2026-09-23T00:00:00Z"
+        }
+      ]
     },
     {
       "id": "scent-stacking",
@@ -195,7 +300,33 @@
         "Google": 46,
         "YouTube": 52,
         "Pinterest": 95
-      }
+      },
+      "archetype": "Emerging trend",
+      "confidence": 65,
+      "audience": "Both",
+      "audienceWhy": "Editorial affinity based on the topic and cultural context; not a platform demographic measurement.",
+      "audienceConfidence": 58,
+      "model": {
+        "momentum": 0.62,
+        "evidence": 0.57,
+        "authority": 0.84,
+        "agreement": 0.62,
+        "burst": 0.55,
+        "persistence": 0.48,
+        "novelty": 0.64,
+        "whitespace": 0.716,
+        "velocity": 67,
+        "ageDays": 6.0
+      },
+      "evidence": [
+        {
+          "title": "Scent stacking",
+          "source": "Pinterest Predicts 2026",
+          "role": "signal",
+          "url": "https://business.pinterest.com/es/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
+          "publishedAt": "2026-09-23T00:00:00Z"
+        }
+      ]
     },
     {
       "id": "fragmented-mainstream",
@@ -233,7 +364,33 @@
         "Google": 58,
         "YouTube": 91,
         "Pinterest": 59
-      }
+      },
+      "archetype": "Structural shift",
+      "confidence": 73,
+      "audience": "Both",
+      "audienceWhy": "Editorial affinity based on the topic and cultural context; not a platform demographic measurement.",
+      "audienceConfidence": 58,
+      "model": {
+        "momentum": 0.77,
+        "evidence": 0.65,
+        "authority": 0.84,
+        "agreement": 0.62,
+        "burst": 0.7,
+        "persistence": 0.72,
+        "novelty": 0.42,
+        "whitespace": 0.663,
+        "velocity": 82,
+        "ageDays": 6.0
+      },
+      "evidence": [
+        {
+          "title": "Niche is the new mainstream",
+          "source": "YouTube Culture & Trends",
+          "role": "signal",
+          "url": "https://blog.youtube/intl/es-419/culture-and-trends/realmente-desaparecio-la-cultura-mainstream/",
+          "publishedAt": "2026-09-23T00:00:00Z"
+        }
+      ]
     },
     {
       "id": "omnichannel-mx",
@@ -271,7 +428,33 @@
         "Google": 77,
         "YouTube": 64,
         "Pinterest": 58
-      }
+      },
+      "archetype": "Structural shift",
+      "confidence": 74,
+      "audience": "Both",
+      "audienceWhy": "Editorial affinity based on the topic and cultural context; not a platform demographic measurement.",
+      "audienceConfidence": 58,
+      "model": {
+        "momentum": 0.79,
+        "evidence": 0.66,
+        "authority": 0.84,
+        "agreement": 0.62,
+        "burst": 0.72,
+        "persistence": 0.72,
+        "novelty": 0.42,
+        "whitespace": 0.656,
+        "velocity": 84,
+        "ageDays": 6.0
+      },
+      "evidence": [
+        {
+          "title": "Value, everywhere",
+          "source": "Kantar México",
+          "role": "signal",
+          "url": "https://www.kantar.com/latin-america/Inspiracion/Consumidor/2025/Mexico-competir-en-un-mercado-omnicanal-en-2026",
+          "publishedAt": "2026-09-23T00:00:00Z"
+        }
+      ]
     },
     {
       "id": "digital-buyers-mx",
@@ -309,7 +492,33 @@
         "Google": 82,
         "YouTube": 70,
         "Pinterest": 65
-      }
+      },
+      "archetype": "Structural shift",
+      "confidence": 76,
+      "audience": "Both",
+      "audienceWhy": "Editorial affinity based on the topic and cultural context; not a platform demographic measurement.",
+      "audienceConfidence": 58,
+      "model": {
+        "momentum": 0.83,
+        "evidence": 0.68,
+        "authority": 0.84,
+        "agreement": 0.62,
+        "burst": 0.76,
+        "persistence": 0.72,
+        "novelty": 0.42,
+        "whitespace": 0.642,
+        "velocity": 88,
+        "ageDays": 6.0
+      },
+      "evidence": [
+        {
+          "title": "Digital buying is infrastructure",
+          "source": "AMVO",
+          "role": "signal",
+          "url": "https://blog.amvo.org.mx/blog/10-hallazgos-clave-de-los-estudios-de-amvo-del-2026",
+          "publishedAt": "2026-09-23T00:00:00Z"
+        }
+      ]
     }
   ],
   "industries": [
@@ -389,37 +598,161 @@
       "name": "Google Trends · México",
       "type": "Search",
       "url": "https://trends.google.com/trending?geo=MX&hl=es-419",
-      "note": "Current search demand and breakout queries."
+      "note": "Current search demand and breakout queries.",
+      "region": "MX",
+      "role": "signal"
     },
     {
       "name": "TikTok Creative Center · México",
       "type": "Social",
       "url": "https://ads.tiktok.com/creative/creativeCenter/trends?region=MX",
-      "note": "Trending hashtags, videos and audience context."
+      "note": "Trending hashtags, videos and audience context.",
+      "region": "MX",
+      "role": "evidence"
     },
     {
       "name": "YouTube Culture & Trends",
       "type": "Social / culture",
       "url": "https://blog.youtube/intl/es-419/culture-and-trends/",
-      "note": "Platform research on formats, communities and cultural shifts."
+      "note": "Platform research on formats, communities and cultural shifts.",
+      "region": "GLOBAL",
+      "role": "evidence"
     },
     {
       "name": "AMVO",
       "type": "Mexico market",
       "url": "https://amvo.org.mx/",
-      "note": "E-commerce, digital shopper and category research for Mexico."
+      "note": "E-commerce, digital shopper and category research for Mexico.",
+      "region": "GLOBAL",
+      "role": "evidence"
     },
     {
       "name": "Kantar Latin America",
       "type": "Market research",
       "url": "https://www.kantar.com/latin-america",
-      "note": "Consumer, FMCG and omnichannel context."
+      "note": "Consumer, FMCG and omnichannel context.",
+      "region": "GLOBAL",
+      "role": "evidence"
     },
     {
       "name": "Pinterest Predicts",
       "type": "Visual culture",
       "url": "https://business.pinterest.com/es/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
-      "note": "Forward-looking global visual and category signals."
+      "note": "Forward-looking global visual and category signals.",
+      "region": "GLOBAL",
+      "role": "evidence"
+    },
+    {
+      "name": "WGSN Public Insights",
+      "type": "TREND FORECASTING",
+      "note": "Forecasting, consumer behavior and lifecycle thinking used as context — not copied into LUMA scores.",
+      "url": "https://www.wgsn.com/en",
+      "region": "GLOBAL",
+      "role": "evidence"
+    },
+    {
+      "name": "The Future Laboratory",
+      "type": "FORESIGHT",
+      "note": "Sector-level foresight and behavioral shifts; useful for separating fleeting moments from longer-term change.",
+      "url": "https://www.thefuturelaboratory.com/reports",
+      "region": "GLOBAL",
+      "role": "evidence"
+    },
+    {
+      "name": "Marketing Brew",
+      "type": "MARKETING EDITORIAL",
+      "note": "Current brand, social, creator and marketing strategy coverage for commercial context.",
+      "url": "https://www.marketingbrew.com/topic/strategy-trends",
+      "region": "GLOBAL",
+      "role": "evidence"
+    },
+    {
+      "name": "Vogue Business",
+      "type": "BUSINESS EDITORIAL",
+      "note": "Fashion, beauty, retail and technology signals with a premium business lens.",
+      "url": "https://www.voguebusiness.com/",
+      "region": "GLOBAL",
+      "role": "evidence"
+    },
+    {
+      "name": "The Drum",
+      "type": "MARKETING INTELLIGENCE",
+      "note": "Marketing, media, social and brand strategy coverage used as corroborating evidence.",
+      "url": "https://www.thedrum.com/",
+      "region": "GLOBAL",
+      "role": "evidence"
+    },
+    {
+      "name": "Highsnobiety",
+      "type": "CULTURE EDITORIAL",
+      "note": "Youth culture, style and status signals used as global context for Gen Z-facing categories.",
+      "url": "https://www.highsnobiety.com/",
+      "region": "GLOBAL",
+      "role": "evidence"
+    },
+    {
+      "name": "IAB México",
+      "type": "Market research",
+      "region": "MX",
+      "role": "evidence",
+      "url": "https://www.iabmexico.com/",
+      "note": "Advertising, media and creator-economy context in Mexico."
+    },
+    {
+      "name": "Ipsos México",
+      "type": "Market research",
+      "region": "MX",
+      "role": "evidence",
+      "url": "https://www.ipsos.com/es-mx",
+      "note": "Generational and consumer-behaviour research."
+    },
+    {
+      "name": "WGSN",
+      "type": "Trend research",
+      "region": "GLOBAL",
+      "role": "foresight",
+      "url": "https://www.wgsn.com/",
+      "note": "Consumer and design trend forecasting used as long-horizon context."
+    },
+    {
+      "name": "Stylus",
+      "type": "Trend research",
+      "region": "GLOBAL",
+      "role": "foresight",
+      "url": "https://stylus.com/",
+      "note": "Cross-industry consumer trend intelligence."
+    },
+    {
+      "name": "Digiday",
+      "type": "Marketing",
+      "region": "GLOBAL",
+      "role": "trade",
+      "url": "https://digiday.com/",
+      "note": "Creator economy, media and marketing trade intelligence."
+    },
+    {
+      "name": "Glossy",
+      "type": "Editorial",
+      "region": "GLOBAL",
+      "role": "trade",
+      "url": "https://www.glossy.co/",
+      "note": "Beauty, fashion, retail and creator-marketing signals."
+    },
+    {
+      "name": "Vogue México",
+      "type": "Editorial",
+      "region": "MX",
+      "role": "culture",
+      "url": "https://www.vogue.mx/",
+      "note": "Fashion, beauty and culture signals in Mexico."
+    },
+    {
+      "name": "Chilango",
+      "type": "Editorial",
+      "region": "MX",
+      "role": "culture",
+      "url": "https://www.chilango.com/",
+      "note": "Local culture, food, music and city behaviour."
     }
   ]
 }

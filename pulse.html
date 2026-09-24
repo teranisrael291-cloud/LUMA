@@ -28,7 +28,7 @@
         <a href="index.html#creators-side">Para creators</a>
       </nav>
       <div class="nav-actions"><div class="lang-toggle" aria-label="Language"><button class="lang-btn active" data-pulse-lang="es">ES</button><button class="lang-btn" data-pulse-lang="en">EN</button></div><a class="btn btn-dark btn-small" href="index.html#start" data-pulse-i18n="start">Iniciar campaña</a></div>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">☰</button>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú"><span class="menu-glyph" aria-hidden="true"></span></button>
     </div>
     <nav class="mobile-nav" id="mobile-nav" aria-label="Móvil">
       <a href="index.html#creators">Creadores</a><a href="pulse.html">Pulse</a><a href="index.html#brands">Para marcas</a><a href="index.html#creators-side">Para creators</a><div class="lang-toggle mobile-lang" aria-label="Language"><button class="lang-btn active" data-pulse-lang="es">ES</button><button class="lang-btn" data-pulse-lang="en">EN</button></div><a class="btn btn-dark" href="index.html#start" data-pulse-i18n="start">Iniciar campaña</a>
@@ -38,10 +38,10 @@
   <main>
     <section class="pulse-hero section-shell">
       <div class="pulse-hero-copy reveal">
-        <div class="pulse-lockup"><span class="pulse-orb">✦</span><span id="pulse-eyebrow">LUMA / PULSE</span></div>
+        <div class="pulse-lockup"><span class="pulse-orb icon-signal" aria-hidden="true"></span><span id="pulse-eyebrow">LUMA / PULSE</span><span class="issue-badge" id="issue-badge">ISSUE 39</span></div>
         <h1 id="pulse-headline">Culture moves fast.<br><em>Stay close.</em></h1>
-        <p id="pulse-deck">Una lectura semanal de lo que está creciendo en México, Latinoamérica y el mundo — con un lente especial en <b>Gen Z y Millennials</b> y explicada para marcas que necesitan saber qué importa, por qué y qué hacer con ello.</p>
-        <div class="issue-line"><span class="live-dot"></span><b id="issue-week">21–27 Sep 2026</b><span>·</span><span>Weekly intelligence</span><span>·</span><span>México first</span></div>
+        <p id="pulse-deck">Un brief semanal de cultura y consumo para México y Latinoamérica — con foco en <b>Gen Z y Millennials</b>. Menos ruido, más contexto: qué está creciendo, qué tan sólida es la señal y qué puede hacer una marca con ella.</p>
+        <div class="issue-line"><span class="live-dot"></span><b id="issue-week">21–27 Sep 2026</b><span class="issue-separator"></span><span id="issue-readtime">7 min read</span><span class="issue-separator"></span><span>México / LATAM / Global</span></div>
       </div>
       <div class="pulse-hero-art reveal delay-1" aria-hidden="true">
         <div class="signal-sun"><span>86</span><small>LUMA<br>SIGNAL</small></div>
@@ -59,13 +59,42 @@
       </div>
     </section>
 
+    <section class="pulse-editorial section-shell reveal" aria-label="Nota editorial y metodología rápida">
+      <div class="editorial-note">
+        <div><p class="eyebrow">THE EDIT</p><h2>Lo importante no es que algo sea viral.<br><em>Es saber si vale la pena actuar.</em></h2></div>
+        <p id="editorial-note-copy">Pulse cruza señales de búsqueda, plataformas, investigación de mercado y publicaciones editoriales. La máquina encuentra patrones; la edición humana decide cuáles merecen atención.</p>
+      </div>
+      <div class="signal-legend" aria-label="Cómo leer Pulse">
+        <article><span class="legend-index">01</span><div><b>LUMA Signal</b><p>Momentum + relevancia + utilidad comercial. No es una métrica de plataforma.</p></div></article>
+        <article><span class="legend-index">02</span><div><b>Confidence</b><p>Qué tan sólida es la evidencia: diversidad de fuentes, autoridad y recencia.</p></div></article>
+        <article><span class="legend-index">03</span><div><b>Stage</b><p>Dónde está la señal en su ciclo: Spark, Rising, Accelerating, Mainstream o Cooling.</p></div></article>
+      </div>
+    </section>
+
     <section class="weekly section-shell">
-      <div class="editorial-head reveal"><div><p class="eyebrow">THIS WEEK</p><h2>Signals worth<br><em>your attention.</em></h2></div><p>No intentamos mostrar todo internet. Pulse selecciona pocas señales con contexto suficiente para tomar una decisión.</p></div>
+      <div class="editorial-head reveal"><div><p class="eyebrow">THIS WEEK · EDITOR'S CUT</p><h2>Signals we would<br><em>brief on.</em></h2></div><p>Una selección corta, no un feed infinito. Abrimos cada señal con evidencia, audiencia, etapa y una lectura clara para marketing.</p></div>
       <div class="lead-grid" id="lead-grid" aria-live="polite"></div>
     </section>
 
+    <section class="signal-map-section section-shell" id="signal-map-section">
+      <div class="editorial-head compact reveal"><div><p class="eyebrow">SIGNAL MAP</p><h2>Momentum,<br><em>with evidence.</em></h2></div><p>Cada punto cruza momentum y confidence. Arriba a la derecha están las señales que se mueven rápido y, al mismo tiempo, tienen mejor respaldo.</p></div>
+      <div class="signal-map-shell reveal">
+        <div class="signal-map-frame">
+          <div class="axis-label axis-y">MOMENTUM</div>
+          <svg id="signal-map" viewBox="0 0 900 470" role="img" aria-label="Mapa de señales por momentum y confidence"></svg>
+          <div class="axis-label axis-x">CONFIDENCE</div>
+        </div>
+        <aside class="signal-map-read" id="signal-map-read" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section class="horizon-section section-shell">
+      <div class="editorial-head reveal"><div><p class="eyebrow">CULTURAL HORIZON</p><h2>Moment, trend<br><em>or shift?</em></h2></div><p>No todas las señales viven igual. Pulse separa picos culturales, tendencias emergentes y cambios estructurales para evitar tratar cada viral como una estrategia.</p></div>
+      <div class="horizon-grid reveal" id="horizon-grid"></div>
+    </section>
+
     <section class="monthly section-shell" id="monthly">
-      <div class="editorial-head compact reveal"><div><p class="eyebrow">MONTHLY VIEW</p><h2>September,<br><em>in motion.</em></h2></div><p>Índice editorial LUMA de 0–100. Sirve para comparar momentum dentro de esta edición; no es una métrica oficial de las plataformas.</p></div>
+      <div class="editorial-head compact reveal"><div><p class="eyebrow">MOMENTUM BOARD</p><h2>September,<br><em>in motion.</em></h2></div><p>Seguimos la trayectoria, no sólo el pico. El índice LUMA permite comparar señales dentro de la edición y detectar cuáles ganan o pierden fuerza.</p></div>
       <div class="month-board reveal">
         <div class="month-chart-wrap">
           <div class="month-chart-top"><div><span class="chart-kicker">LUMA SIGNAL INDEX</span><h3 id="chart-title">Quincena culture</h3></div><div class="chart-score"><b id="chart-score">86</b><span>/100</span></div></div>
@@ -78,14 +107,14 @@
 
     <section class="social-radar">
       <div class="section-shell">
-        <div class="editorial-head light reveal"><div><p class="eyebrow light">SOCIAL RADAR</p><h2>Same culture.<br><em>Different signals.</em></h2></div><p>No mezclamos views, búsquedas y guardados como si fueran equivalentes. Cada plataforma cuenta una parte distinta de la historia.</p></div>
+        <div class="editorial-head light reveal"><div><p class="eyebrow light">CHANNEL READ</p><h2>Same culture.<br><em>Different evidence.</em></h2></div><p>Cada canal responde una pregunta distinta: velocidad, intención, profundidad, estética o contexto. Pulse evita convertir métricas incompatibles en una falsa comparación.</p></div>
         <div class="radar-grid reveal" id="radar-grid"></div>
-        <div class="radar-reading reveal"><span class="orange-spark">✦</span><p id="radar-reading"><b>TikTok is creating the language.</b> YouTube shows which formats are becoming durable. Search tells us when curiosity is escaping the feed. Market research adds the buying context.</p></div>
+        <div class="radar-reading reveal"><span class="orange-spark icon-signal" aria-hidden="true"></span><p id="radar-reading"><b>TikTok is creating the language.</b> YouTube shows which formats are becoming durable. Search tells us when curiosity is escaping the feed. Market research adds the buying context.</p></div>
       </div>
     </section>
 
     <section class="industry section-shell">
-      <div class="editorial-head reveal"><div><p class="eyebrow">INDUSTRY PULSE</p><h2>What it means<br><em>for your category.</em></h2></div><p>Selecciona un giro. LUMA traduce señales culturales y de consumo a una lectura sencilla para marketing.</p></div>
+      <div class="editorial-head reveal"><div><p class="eyebrow">CATEGORY BRIEF</p><h2>From signal<br><em>to implication.</em></h2></div><p>Selecciona un giro para ver qué está cambiando, qué señales lo sostienen y cuál podría ser la respuesta de marketing.</p></div>
       <div class="industry-shell reveal">
         <div class="industry-tabs" id="industry-tabs"></div>
         <article class="industry-detail" id="industry-detail" aria-live="polite"></article>
@@ -94,29 +123,34 @@
 
     <section class="geo-story section-shell">
       <div class="geo-card reveal">
-        <div class="geo-copy"><p class="eyebrow">MEXICO FIRST</p><h2>Local signal.<br><em>Global context.</em></h2><p>Pulse evita traducir tendencias de Estados Unidos y llamarlas “LatAm”. Cada señal se etiqueta por alcance y evidencia.</p></div>
+        <div class="geo-copy"><p class="eyebrow">MEXICO FIRST</p><h2>Local signal.<br><em>Global context.</em></h2><p>La prioridad es detectar qué está ocurriendo aquí. LATAM sirve para comparar transferencia cultural; lo global funciona como contexto, no como sustituto de evidencia local.</p></div>
         <div class="geo-flow" aria-label="Flujo de señales por región">
-          <div class="geo-node primary"><span>MX</span><b>Start here</b><small>Search · social · market</small></div><div class="geo-arrow">→</div><div class="geo-node"><span>LATAM</span><b>Compare</b><small>Patterns · transfer</small></div><div class="geo-arrow">→</div><div class="geo-node"><span>GLOBAL</span><b>Context</b><small>Early signals · shifts</small></div>
+          <div class="geo-node primary"><span>MX</span><b>Start here</b><small>Search / social / market</small></div><div class="geo-arrow"><span class="flow-line" aria-hidden="true"></span></div><div class="geo-node"><span>LATAM</span><b>Compare</b><small>Patterns / transfer</small></div><div class="geo-arrow"><span class="flow-line" aria-hidden="true"></span></div><div class="geo-node"><span>GLOBAL</span><b>Context</b><small>Early signals / shifts</small></div>
         </div>
       </div>
     </section>
 
     <section class="sources-section section-shell" id="sources">
-      <div class="editorial-head compact reveal"><div><p class="eyebrow">SOURCE STACK</p><h2>Signals need<br><em>receipts.</em></h2></div><p>Las cifras observadas enlazan a la fuente original. Las interpretaciones y el LUMA Signal se identifican como análisis editorial.</p></div>
+      <div class="editorial-head compact reveal"><div><p class="eyebrow">EVIDENCE DESK</p><h2>Signals need<br><em>receipts.</em></h2></div><p>Separamos observación de interpretación. Cada cifra enlaza a su origen; LUMA Signal, Confidence y las implicaciones son análisis propios.</p></div>
+      <div class="evidence-architecture reveal">
+        <div class="evidence-mix" id="evidence-mix"></div>
+        <div class="evidence-principle"><span class="icon-signal" aria-hidden="true"></span><p><b>Triangulation over volume.</b> Una señal gana confianza cuando aparece en tipos de fuente distintos: comportamiento, mercado, foresight, trade y cultura.</p></div>
+      </div>
       <div class="source-grid reveal" id="source-grid"></div>
+      <details class="source-directory reveal"><summary>Ver directorio completo de fuentes curadas <span id="source-count"></span></summary><div class="source-directory-grid" id="source-directory-grid"></div></details>
     </section>
 
     <section class="pulse-cta section-shell">
       <div class="pulse-cta-card reveal">
-        <div><p class="eyebrow light">FROM SIGNAL TO CAMPAIGN</p><h2>Found something<br><em>worth moving on?</em></h2><p>Convierte cualquier señal en un brief inicial. LUMA puede ayudarte a encontrar el ángulo y los creators adecuados.</p></div>
-        <a class="btn btn-orange" id="campaign-cta" href="index.html#start">Turn this signal into a campaign →</a>
+        <div><p class="eyebrow light">FROM SIGNAL TO CAMPAIGN</p><h2>See a signal<br><em>worth acting on?</em></h2><p>Convierte una señal en un brief: territorio creativo, audiencia, creators y siguiente acción. El trend no es la idea; es el punto de partida.</p></div>
+        <a class="btn btn-orange with-arrow" id="campaign-cta" href="index.html#start">Turn this signal into a campaign</a>
       </div>
     </section>
   </main>
 
   <footer class="footer section-shell">
     <div class="footer-brand"><a class="brand" href="index.html"><img src="assets/luma-mark.svg" alt=""/><span class="brand-copy"><b>LUMA</b><small>CREATORS</small></span></a><p>REAL PEOPLE. BRIGHTER BRANDS.</p></div>
-    <div class="footer-links"><a href="index.html#creators">Creators</a><a href="pulse.html">Pulse</a><a href="index.html#brands">Brands</a><a href="https://www.instagram.com/luma_creators" target="_blank" rel="noreferrer">Instagram ↗</a><a href="admin.html" class="admin-link">Editor</a></div>
+    <div class="footer-links"><a href="index.html#creators">Creators</a><a href="pulse.html">Pulse</a><a href="index.html#brands">Brands</a><a class="external-link" href="https://www.instagram.com/luma_creators" target="_blank" rel="noreferrer">Instagram</a><a href="admin.html" class="admin-link">Editor</a></div>
     <div class="sources"><span id="footer-issue">Pulse weekly edition</span><span>Gen Z + Millennial lens</span></div>
     <div class="footer-bottom"><span>© 2026 LUMA Creators</span><span>That’s the pulse. See you next week.</span></div>
   </footer>
@@ -124,7 +158,7 @@
   <div class="trend-modal" id="trend-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-backdrop" data-close-modal></div>
     <div class="modal-panel">
-      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button>
+      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar"><span class="close-glyph" aria-hidden="true"></span></button>
       <div id="modal-content"></div>
     </div>
   </div>

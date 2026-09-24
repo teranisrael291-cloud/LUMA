@@ -1,128 +1,65 @@
-# LUMA Creators V6 — ML/NLP Pulse Research Engine
+# LUMA Creators V8
 
-V6 removes the generative-AI research dependency. LUMA Pulse now builds its weekly candidate set with a deterministic, inspectable research pipeline implemented in Node.js.
+V8 expands LUMA Pulse into a richer cultural-intelligence product while keeping the research engine independent from generative AI.
 
-## Pipeline
+## Research pipeline
 
-```text
-20 curated public sources
-        ↓
-RSS / Google News RSS collection
-        ↓
-relevance + safety filters
-        ↓
-text normalization / tokenization / light stemming
-        ↓
-TF-IDF vectors
-        ↓
-cosine-similarity + Jaccard clustering
-        ↓
-TextRank extractive summary
-        ↓
-category / region / audience classification
-        ↓
-LUMA Signal scoring
-        ↓
-10–18 candidate signals
-        ↓
-/admin human editorial review
-        ↓
-published Pulse edition
-```
+1. Collect from 45 curated sources across five evidence roles.
+2. Normalize and deduplicate titles, descriptions and article text.
+3. Build weighted lexical representations with TF-IDF.
+4. Compare documents with a hybrid similarity model: cosine similarity, IDF-weighted overlap, title overlap and phrase overlap.
+5. Cluster related evidence with unsupervised graph grouping.
+6. Generate extractive summaries with TextRank and redundancy control.
+7. Estimate temporal burst, persistence, novelty, source agreement and cross-source diversity.
+8. Classify audience, category, geography, lifecycle stage and cultural horizon.
+9. Calibrate LUMA Signal and Confidence separately.
+10. Use MMR-style selection to preserve category and source diversity.
+11. Human editor reviews, rewrites and selects the weekly edition.
+12. Published editions are added to a compact history index so future runs can detect persistence and week-over-week velocity.
 
-There is **no OpenAI API key, LLM, generative summary, or autonomous AI agent** in this version.
+No OpenAI key, LLM or autonomous AI agent is required.
 
-## Algorithms implemented
+## Source architecture
 
-- TF-IDF vectorization for article/topic representation.
-- Cosine similarity + title Jaccard similarity for cross-source trend clustering.
-- TextRank for extractive summaries from source text.
-- Weighted classification for market category, geography and Gen Z / Millennial affinity.
-- Recency decay, source authority, source diversity, search-volume evidence and commercial relevance for LUMA Signal scoring.
-- Deterministic six-week editorial index generation so the UI does not fabricate platform history.
-- Cross-source evidence trace stored on every trend.
-- Source-health telemetry in the admin.
-- Political/crime/disaster filtering so a breaking-news spike does not automatically become a marketing trend.
+The source catalog is organized into five roles:
 
-The audience classifier is intentionally conservative: unless source evidence explicitly names a cohort or the topic has strong affinity signals, it returns `Both`. It must not be treated as measured demographic data.
+- **Signal:** Google Trends, TikTok, YouTube, Pinterest, Meta, Spotify.
+- **Evidence:** AMVO, IAB México, Comscore, Kantar, NIQ, Ipsos, GWI, Euromonitor, EMARKETER, Mintel and Think with Google.
+- **Foresight:** WGSN, The Future Laboratory, TrendWatching, Stylus, Canvas8, Contagious, Springwise, Trend Hunter and Exploding Topics.
+- **Trade:** Digiday, Glossy, Marketing Brew, The Drum, ADWEEK, Campaign and Modern Retail.
+- **Culture:** Vogue México, GQ México, Glamour México, ELLE México, Chilango, Time Out México, Vogue Business, Business of Fashion, Highsnobiety, Dazed and Hypebeast.
 
-## Curated source stack (20)
+Sources are not treated equally. Authority, geography, role diversity, recency and agreement contribute differently to Confidence and LUMA Signal.
 
-1. Google Trends México
-2. TikTok Newsroom LATAM
-3. YouTube Culture & Trends
-4. Pinterest Business / Pinterest Predicts
-5. Think with Google LATAM
-6. AMVO
-7. IAB México
-8. Kantar Latinoamérica
-9. NielsenIQ México
-10. Vogue México
-11. GQ México y Latinoamérica
-12. Glamour México
-13. ELLE México
-14. Chilango
-15. Time Out México
-16. Spotify Newsroom
-17. Mintel Insights
-18. TrendWatching
-19. Exploding Topics
-20. WGSN public insights
+## Pulse V8 surfaces
 
-The source registry lives in `api/_lib/sources.js`. Add, remove, weight or retag sources there. Except for Google Trends' public RSS feed, the engine discovers recent source articles through Google News RSS constrained to each curated domain. This avoids brittle page scraping while keeping the original publication as the evidence source.
+- Editor's Cut
+- Signal Map: momentum vs. confidence
+- Cultural Horizon: cultural moment / emerging trend / structural shift
+- Momentum Board
+- Channel Read
+- Category Brief
+- Mexico-first market framing
+- Evidence architecture and full curated source directory
+- Signal Anatomy inside each trend detail
 
-## Admin
+The UI avoids emoji glyphs. Icons, arrows, states and decorative marks are built with CSS geometry and SVG.
 
-Open `/admin` and authenticate with `LUMA_ADMIN_TOKEN`.
+## Vercel configuration
 
-The editor now shows:
+Required:
 
-- research pipeline metrics;
-- health of all 20 sources;
-- candidate clusters and LUMA score;
-- ML/NLP trace (`momentum`, `evidence`, `authority`, age);
-- evidence links used for each signal;
-- editable title, summary, impact, audience, score, stage, source and editorial copy;
-- selection and publication of 1–10 signals.
+- Private Vercel Blob connected to the project, using OIDC or `BLOB_READ_WRITE_TOKEN`.
+- `LUMA_ADMIN_TOKEN`
+- `CRON_SECRET`
 
-The machine researches and ranks. The human editor decides what LUMA says publicly.
-
-## Deploy on Vercel
-
-1. Import this folder into Vercel.
-2. Create and connect a **Private Vercel Blob** store.
-3. Add production environment variables:
-
-```text
-LUMA_ADMIN_TOKEN=<long-random-secret>
-CRON_SECRET=<another-long-random-secret>
-```
-
-New Vercel Blob connections use project-scoped OIDC automatically, so `BLOB_READ_WRITE_TOKEN` is not required in production. Legacy/static-token stores and local development can still use `BLOB_READ_WRITE_TOKEN`.
-
-4. Redeploy.
-5. Open `/admin` and click **Ejecutar research engine**.
-6. Inspect source health and candidate evidence.
-7. Edit/select 5–8 signals and publish.
-
-No third-party AI key is required.
-
-## Weekly automation
-
-`vercel.json` runs `/api/cron-refresh` every Monday at 13:00 UTC (07:00 Mexico City). The job updates `pulse/candidate.json` only; it never auto-publishes.
+The weekly cron remains defined in `vercel.json`. Research creates candidates; it does not publish automatically.
 
 ## Storage
 
-```text
-pulse/candidate.json
-pulse/published.json
-pulse/history/<timestamp>.json
-```
+- `pulse/candidate.json`
+- `pulse/published.json`
+- `pulse/history-index.json`
+- `pulse/history/<timestamp>.json`
 
-## Important limitations
-
-- Public websites and RSS/search surfaces can change, throttle or block automated requests. The admin source-health panel makes failures visible instead of silently inventing data.
-- Google News RSS is used as a discovery layer for many editorial domains. It is not treated as the underlying evidence source; each item retains the original publisher identity and link path.
-- Instagram does not expose a general public organic-trending API. The engine therefore does not claim direct Instagram trend measurements.
-- `LUMA Signal`, channel scores and the six-week line are LUMA model outputs, not raw metrics from TikTok, Meta, Google, YouTube or Pinterest.
-- Extractive summaries can be less elegant than generative copy. That is intentional in V6: the admin editor is the final editorial layer.
+`history-index.json` stores compact metadata for the latest 16 published editions and is used by the ML/NLP engine for persistence and velocity.

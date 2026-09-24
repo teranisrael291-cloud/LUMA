@@ -1,42 +1,39 @@
 import { SOURCE_CATALOG, RESEARCH_TERMS, publicSourceCatalog } from './sources.js';
 
-const STOP = new Set(`a al algo algunas algunos ante antes como con contra cual cuando de del desde donde durante e el ella ellas ellos en entre era eramos es esa esas ese eso esos esta estas este esto estos fue fueron ha hacia hasta hay la las le les lo los mas me mi mis muy no nos o para pero por porque que quien se sin sobre su sus te tu tus un una uno unas unos y ya the a an and are as at be by for from has have how in into is it its of on or our that the their this to was were what when where who why will with you your trend trends tendencia tendencias mexico méxico latam latinoamerica latinoamérica 2026 2025`.split(/\s+/));
-
-const TREND_TERMS = new Set(`tendencia tendencias trend trends viral auge crece crecimiento emergente rising popular cultura cultural estética aesthetic estilo consumo consumidor creator creators creador creadores social tiktok instagram youtube pinterest moda fashion belleza beauty food comida bebida retail ecommerce e-commerce viaje travel wellness bienestar fitness música music gaming gamer tecnología tech productividad lifestyle generación gen z millennial millennials joven jóvenes`.split(/\s+/));
-
-const BLOCK_TERMS = new Set(`elección elecciones candidato candidata presidente presidenta partido congreso senado diputado diputada asesinato asesinado homicidio secuestro detenido detención crimen criminal huracán tormenta terremoto sismo guerra ataque muertos muerte tragedia desastre`.split(/\s+/));
+const STOP = new Set(`a al algo algunas algunos ante antes como con contra cual cuando de del desde donde durante e el ella ellas ellos en entre era eramos es esa esas ese eso esos esta estas este esto estos fue fueron ha hacia hasta hay la las le les lo los mas me mi mis muy no nos o para pero por porque que quien se sin sobre su sus te tu tus un una uno unas unos y ya the a an and are as at be by for from has have how in into is it its of on or our that the their this to was were what when where who why will with you your trend trends tendencia tendencias mexico méxico latam latinoamerica latinoamérica 2026 2025 2024 report informe says said new more latest`.split(/\s+/));
+const TREND_TERMS = new Set(`tendencia tendencias trend trends viral auge crece crecimiento emergente rising popular cultura cultural estética aesthetic estilo consumo consumidor creator creators creador creadores social tiktok instagram youtube pinterest moda fashion belleza beauty food comida bebida retail ecommerce e-commerce viaje travel wellness bienestar fitness música music gaming gamer tecnología tech productividad lifestyle generación gen z millennial millennials joven jóvenes discovery comunidad community commerce fandom ritual comportamiento behaviour behavior shift cambio`.split(/\s+/));
+const BLOCK_TERMS = new Set(`elección elecciones candidato candidata presidente presidenta partido congreso senado diputado diputada asesinato asesinado homicidio secuestro detenido detención crimen criminal huracán tormenta terremoto sismo guerra ataque muertos muerte tragedia desastre violencia`.split(/\s+/));
 
 const CATEGORY_LEXICON = {
-  'Beauty': ['beauty','belleza','maquillaje','makeup','uñas','nails','cabello','hair','skin','skincare','perfume','fragancia','grooming'],
-  'Fashion': ['fashion','moda','look','outfit','ropa','vestido','jacket','chaqueta','zapatos','sneakers','style','estilo','color','aesthetic','estética'],
-  'Food & Beverage': ['food','comida','bebida','drink','restaurant','restaurante','café','coffee','receta','recipe','snack','meal','cocina','gastronomía'],
-  'Retail & e-commerce': ['retail','ecommerce','e-commerce','compra','compras','shopping','shop','marketplace','venta','ventas','commerce','consumer','consumidor'],
-  'Travel & Experiences': ['travel','viaje','viajes','turismo','hotel','destination','destino','vacaciones','experiencia','experiences','evento','eventos','festival'],
-  'Wellness & Fitness': ['wellness','bienestar','fitness','salud','health','running','correr','gym','sueño','sleep','mental','mindfulness','proteína','protein'],
-  'Tech & Productivity': ['tech','tecnología','app','apps','ai','ia','software','device','gadget','productividad','productivity','digital','creator tools'],
-  'Entertainment & Music': ['music','música','song','canción','artist','artista','concert','concierto','serie','series','movie','película','streaming','fandom','meme','memes'],
-  'Gaming & Sports': ['gaming','gamer','videojuego','videojuegos','sport','sports','deporte','fútbol','football','soccer','nba','nfl','mlb','esports'],
-  'Finance & Value': ['finance','finanzas','precio','price','ahorro','saving','budget','presupuesto','quincena','wallet','pago','payments','bnpl','valor'],
-  'Culture': ['culture','cultura','social','creator','creador','creadores','community','comunidad','identity','identidad','lifestyle','viral']
+  'Beauty': ['beauty','belleza','maquillaje','makeup','uñas','nails','cabello','hair','skin','skincare','perfume','fragancia','fragrance','grooming','cosmetic'],
+  'Fashion': ['fashion','moda','look','outfit','ropa','vestido','jacket','chaqueta','zapatos','sneakers','style','estilo','color','aesthetic','estética','streetwear','luxury'],
+  'Food & Beverage': ['food','comida','bebida','drink','restaurant','restaurante','café','coffee','receta','recipe','snack','meal','cocina','gastronomía','matcha'],
+  'Retail & e-commerce': ['retail','ecommerce','e-commerce','compra','compras','shopping','shop','marketplace','venta','ventas','commerce','consumer','consumidor','store'],
+  'Travel & Experiences': ['travel','viaje','viajes','turismo','hotel','destination','destino','vacaciones','experiencia','experiences','evento','eventos','festival','hospitality'],
+  'Wellness & Fitness': ['wellness','bienestar','fitness','salud','health','running','correr','gym','sueño','sleep','mental','mindfulness','proteína','protein','sport'],
+  'Tech & Productivity': ['tech','tecnología','app','apps','ai','ia','software','device','gadget','productividad','productivity','digital','creator tools','search','algorithm'],
+  'Entertainment & Music': ['music','música','song','canción','artist','artista','concert','concierto','serie','series','movie','película','streaming','fandom','meme','memes','podcast'],
+  'Gaming & Sports': ['gaming','gamer','videojuego','videojuegos','sport','sports','deporte','fútbol','football','soccer','nba','nfl','mlb','esports','athlete'],
+  'Finance & Value': ['finance','finanzas','precio','price','ahorro','saving','budget','presupuesto','quincena','wallet','pago','payments','bnpl','valor','value','affordability'],
+  'Culture': ['culture','cultura','social','creator','creador','creadores','community','comunidad','identity','identidad','lifestyle','viral','youth','generational']
 };
 
-const GENZ = new Set(`genz gen-z zeta tiktok meme memes fandom gaming gamer anime kpop festival festivals aesthetic estética viral creator creators creador creadores campus estudiante estudiantes thrift y2k streetwear sneaker sneakers`.split(/\s+/));
-const MILLENNIAL = new Set(`millennial millennials hogar home hipoteca mortgage carrera career trabajo work productividad productivity wellness bienestar travel viaje viajes ahorro saving finanzas finance parenting padres coffee café skincare retail ecommerce`.split(/\s+/));
+const GENZ = new Set(`genz gen-z zeta tiktok meme memes fandom gaming gamer anime kpop festival festivals aesthetic estética viral creator creators creador creadores campus estudiante estudiantes thrift y2k streetwear sneaker sneakers reels shortform short-form community`.split(/\s+/));
+const MILLENNIAL = new Set(`millennial millennials hogar home hipoteca mortgage carrera career trabajo work productividad productivity wellness bienestar travel viaje viajes ahorro saving finanzas finance parenting padres coffee café skincare retail ecommerce nostalgia`.split(/\s+/));
 
 const CREATOR_BY_CATEGORY = {
   'Beauty':'Beauty · skincare · makeup · GRWM · expert explainers', 'Fashion':'Fashion · styling · streetwear · personal style',
   'Food & Beverage':'Food · cafés · recetas · local discovery', 'Retail & e-commerce':'Lifestyle · reviews · value finds · shopping guides',
   'Travel & Experiences':'Travel · city guides · experiences · hospitality', 'Wellness & Fitness':'Wellness · fitness · routines · expert-led creators',
-  'Tech & Productivity':'Tech · productivity · desk/setup · explainers', 'Entertainment & Music':'Entertainment · music · fandom · commentary',
+  'Tech & Productivity':'Tech · productivity · setup · explainers', 'Entertainment & Music':'Entertainment · music · fandom · commentary',
   'Gaming & Sports':'Gaming · sports culture · commentary · community', 'Finance & Value':'Personal finance · value · smart shopping · lifestyle',
   'Culture':'Culture · lifestyle · commentary · community creators'
 };
-
 const IMPACT_BY_CATEGORY = {
   'Beauty':'Puede traducirse en tutoriales, pruebas reales y formatos de rutina donde el producto aparece dentro de un comportamiento que ya interesa a la audiencia.',
   'Fashion':'Abre territorio para styling, reinterpretación local y contenido de identidad personal; funciona mejor cuando el creator ya pertenece a la estética.',
   'Food & Beverage':'Tiene potencial para descubrimiento local, recetas, reseñas y rituales cotidianos que convierten una señal cultural en una experiencia tangible.',
-  'Retail & e-commerce':'Puede ayudar a conectar intención con compra mediante comparativas, recomendaciones, value finds y contenido útil cerca del momento de decisión.',
+  'Retail & e-commerce':'Puede conectar intención con compra mediante comparativas, recomendaciones, value finds y contenido útil cerca del momento de decisión.',
   'Travel & Experiences':'Puede convertirse en itinerarios, descubrimiento local y experiencias creator-led con alto potencial visual y de guardado.',
   'Wellness & Fitness':'Funciona mejor como contenido práctico y creíble: rutinas, hábitos y explicaciones claras, evitando claims de salud no sustentados.',
   'Tech & Productivity':'Permite demostrar utilidad con workflows, comparativas y contenido de uso real en lugar de mensajes puramente promocionales.',
@@ -46,193 +43,85 @@ const IMPACT_BY_CATEGORY = {
   'Culture':'La oportunidad es entrar mediante creators con legitimidad cultural y una ejecución nativa, antes de que la señal se vuelva demasiado masiva.'
 };
 
-function decodeXml(value='') {
-  return String(value).replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g,'$1').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&#(\d+);/g,(_,n)=>String.fromCharCode(Number(n)));
-}
-function stripHtml(value='') { return decodeXml(value).replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim(); }
-function extractTag(xml, tag) { const m=xml.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`,'i')); return m ? stripHtml(m[1]) : ''; }
-function extractRawTag(xml, tag) { const m=xml.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`,'i')); return m ? decodeXml(m[1]).trim() : ''; }
-function clamp(n,min=0,max=100){ return Math.max(min,Math.min(max,n)); }
-function daysAgo(date){ const d=new Date(date); return Number.isFinite(d.getTime()) ? Math.max(0,(Date.now()-d.getTime())/86400000) : 30; }
-function isoWeek(date) { const d=new Date(Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate())); d.setUTCDate(d.getUTCDate()+4-(d.getUTCDay()||7)); const y=new Date(Date.UTC(d.getUTCFullYear(),0,1)); return Math.ceil((((d-y)/86400000)+1)/7); }
-function slug(s){ return normalizeText(s).split(' ').slice(0,8).join('-').replace(/[^a-z0-9-]/g,'').slice(0,64) || `signal-${Date.now()}`; }
-function normalizeText(s=''){ return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9ñáéíóúü\s-]/gi,' ').replace(/\s+/g,' ').trim(); }
-function stem(w){ return w.replace(/(amientos|imientos|aciones|adores|adoras|mente|idades|idad|ando|iendo|es|os|as|s|ing|ed)$/,''); }
-function tokens(s=''){ return normalizeText(s).split(/\s+/).filter(w=>w.length>2&&!STOP.has(w)).map(stem).filter(Boolean); }
-function unique(arr){ return [...new Set(arr)]; }
-function titleCase(s){ return s.replace(/\b\w/g,c=>c.toUpperCase()); }
-function safeUrl(u){ try { const x=new URL(u); return ['http:','https:'].includes(x.protocol)?x.toString():''; } catch { return ''; } }
+function decodeXml(value=''){return String(value).replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g,'$1').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&#(\d+);/g,(_,n)=>String.fromCharCode(Number(n)));}
+function stripHtml(value=''){return decodeXml(value).replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();}
+function extractTag(xml,tag){const m=xml.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`,'i'));return m?stripHtml(m[1]):'';}
+function extractRawTag(xml,tag){const m=xml.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`,'i'));return m?decodeXml(m[1]).trim():'';}
+function clamp(n,min=0,max=100){return Math.max(min,Math.min(max,n));}
+function daysAgo(date){const d=new Date(date);return Number.isFinite(d.getTime())?Math.max(0,(Date.now()-d.getTime())/86400000):30;}
+function isoWeek(date){const d=new Date(Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate()));d.setUTCDate(d.getUTCDate()+4-(d.getUTCDay()||7));const y=new Date(Date.UTC(d.getUTCFullYear(),0,1));return Math.ceil((((d-y)/86400000)+1)/7);}
+function normalizeText(s=''){return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9ñáéíóúü\s-]/gi,' ').replace(/\s+/g,' ').trim();}
+function stem(w){return w.replace(/(amientos|imientos|aciones|adores|adoras|mente|idades|idad|ando|iendo|istas|ista|es|os|as|s|ing|ed)$/,'');}
+function tokens(s=''){return normalizeText(s).split(/\s+/).filter(w=>w.length>2&&!STOP.has(w)).map(stem).filter(Boolean);}
+function unique(arr){return [...new Set(arr)];}
+function safeUrl(u){try{const x=new URL(u);return ['http:','https:'].includes(x.protocol)?x.toString():'';}catch{return '';}}
+function slug(s){return normalizeText(s).split(' ').slice(0,9).join('-').replace(/[^a-z0-9-]/g,'').slice(0,70)||`signal-${Date.now()}`;}
+function cleanTitle(title,sourceName=''){let t=String(title).replace(/\s+-\s+[^-]{2,45}$/,'').replace(/\s+\|\s+[^|]{2,45}$/,'').trim();if(sourceName)t=t.replace(new RegExp(`\\s*[-|]\\s*${sourceName.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}.*$`,'i'),'').trim();return t.length>118?t.slice(0,115).replace(/\s+\S*$/,'')+'…':t;}
 
-function parseRss(xml, source) {
-  const items=[]; const blocks=xml.match(/<item\b[\s\S]*?<\/item>/gi)||[];
-  for(const block of blocks){
-    const title=extractTag(block,'title'); const link=extractRawTag(block,'link'); const pubDate=extractTag(block,'pubDate')||extractTag(block,'dc:date');
-    const description=extractTag(block,'description'); const traffic=extractTag(block,'ht:approx_traffic');
-    if(!title||!link) continue;
-    items.push({ id:`${source.id}:${slug(title)}`, title:cleanTitle(title,source.name), url:link, publishedAt:pubDate||new Date().toISOString(), description, traffic, source });
-  }
-  return items;
-}
-function cleanTitle(title, sourceName=''){
-  let t=String(title).replace(/\s+-\s+[^-]{2,45}$/,'').replace(/\s+\|\s+[^|]{2,45}$/,'').trim();
-  if(sourceName) t=t.replace(new RegExp(`\\s*[-|]\\s*${sourceName.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}.*$`,'i'),'').trim();
-  return t.length>118?t.slice(0,115).replace(/\s+\S*$/,'')+'…':t;
-}
+function parseRss(xml,source){const items=[];const blocks=xml.match(/<item\b[\s\S]*?<\/item>/gi)||[];for(const block of blocks){const title=extractTag(block,'title');const link=extractRawTag(block,'link');const pubDate=extractTag(block,'pubDate')||extractTag(block,'dc:date');const description=extractTag(block,'description');const traffic=extractTag(block,'ht:approx_traffic');if(!title||!link)continue;items.push({id:`${source.id}:${slug(title)}`,title:cleanTitle(title,source.name),url:link,publishedAt:pubDate||new Date().toISOString(),description,traffic,source});}return items;}
+async function fetchText(url,timeout=9000){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),timeout);try{const r=await fetch(url,{redirect:'follow',signal:controller.signal,headers:{'user-agent':'Mozilla/5.0 (compatible; LUMAPulse/2.0; +https://luma-lime-theta.vercel.app/)','accept':'text/html,application/rss+xml,application/xml;q=0.9,*/*;q=0.8'}});if(!r.ok)throw new Error(`HTTP ${r.status}`);return{text:await r.text(),finalUrl:r.url,contentType:r.headers.get('content-type')||''};}finally{clearTimeout(timer);}}
+function googleNewsUrl(source){const focus=(source.tags||[]).slice(0,3).join(' OR ');const q=`site:${source.domain} (trend OR tendencia OR "Gen Z" OR millennials OR creators OR consumer OR cultura${focus?` OR ${focus}`:''}) when:45d`;const english=source.region==='GLOBAL'&&!/\.mx$/.test(source.domain);const p=new URLSearchParams({q,hl:english?'en-US':'es-419',gl:'MX',ceid:english?'US:en':'MX:es-419'});return `https://news.google.com/rss/search?${p}`;}
+async function collectSource(source){const started=Date.now();try{const url=source.direct||googleNewsUrl(source);const{text}=await fetchText(url,8000);const items=parseRss(text,source).slice(0,16);return{source:source.id,ok:true,count:items.length,ms:Date.now()-started,items};}catch(error){return{source:source.id,ok:false,count:0,ms:Date.now()-started,error:error.name==='AbortError'?'timeout':String(error.message||error),items:[]};}}
 
-async function fetchText(url, timeout=9000){
-  const controller=new AbortController(); const timer=setTimeout(()=>controller.abort(),timeout);
-  try { const r=await fetch(url,{redirect:'follow',signal:controller.signal,headers:{'user-agent':'Mozilla/5.0 (compatible; LUMAPulse/1.0; +https://luma-creators.vercel.app)','accept':'text/html,application/rss+xml,application/xml;q=0.9,*/*;q=0.8'}}); if(!r.ok) throw new Error(`HTTP ${r.status}`); return { text:await r.text(), finalUrl:r.url, contentType:r.headers.get('content-type')||'' }; }
-  finally { clearTimeout(timer); }
-}
+function relevance(article){const ts=tokens(`${article.title} ${article.description}`);if(!ts.length)return 0;const trendHits=ts.filter(t=>TREND_TERMS.has(t)).length;const blocked=ts.filter(t=>BLOCK_TERMS.has(t)).length;const roleBonus={signal:.20,evidence:.18,foresight:.18,trade:.12,culture:.10}[article.source.role]||.08;const geoBonus=article.source.region==='MX'?.12:article.source.region==='LATAM'?.08:0;return clamp((trendHits/Math.min(14,ts.length))*1.75+roleBonus+geoBonus-blocked*.24,0,1);}
+function blockedArticle(article){const ts=tokens(`${article.title} ${article.description}`);return ts.filter(t=>BLOCK_TERMS.has(t)).length>=2;}
+async function enrichArticle(article){if(article.source.type==='search-signal')return{...article,body:`${article.title}. ${article.description}`};try{const{text,finalUrl}=await fetchText(article.url,6000);const desc=(text.match(/<meta[^>]+(?:name|property)=["'](?:description|og:description)["'][^>]+content=["']([^"']+)["']/i)||text.match(/<meta[^>]+content=["']([^"']+)["'][^>]+(?:name|property)=["'](?:description|og:description)["']/i)||[])[1]||'';const articleHtml=(text.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)||[])[1]||'';const body=stripHtml(articleHtml||desc||article.description).slice(0,6500);return{...article,url:safeUrl(finalUrl)||article.url,description:stripHtml(desc)||article.description,body:body||`${article.title}. ${article.description}`};}catch{return{...article,body:`${article.title}. ${article.description}`};}}
 
-function googleNewsUrl(source){
-  const q=`site:${source.domain} (${RESEARCH_TERMS.join(' OR ')}) when:30d`;
-  const english=['trendwatching.com','explodingtopics.com','mintel.com','wgsn.com','newsroom.spotify.com'].includes(source.domain);
-  const p=new URLSearchParams({q,hl:english?'en-US':'es-419',gl:'MX',ceid:english?'US:en':'MX:es-419'});
-  return `https://news.google.com/rss/search?${p}`;
-}
+function buildIdf(docs){const df=new Map();for(const doc of docs){for(const t of new Set(doc._tokens))df.set(t,(df.get(t)||0)+1);}const n=docs.length||1;const idf=new Map();for(const[t,c]of df)idf.set(t,Math.log((1+n)/(1+c))+1);return idf;}
+function vector(doc,idf){const tf=new Map();for(const t of doc._tokens)tf.set(t,(tf.get(t)||0)+1);const v=new Map();const denom=doc._tokens.length||1;for(const[t,c]of tf)v.set(t,(c/denom)*(idf.get(t)||1));return v;}
+function cosine(a,b){let dot=0,aa=0,bb=0;for(const v of a.values())aa+=v*v;for(const v of b.values())bb+=v*v;const[small,other]=a.size<b.size?[a,b]:[b,a];for(const[k,v]of small)dot+=v*(other.get(k)||0);return dot/(Math.sqrt(aa)*Math.sqrt(bb)||1);}
+function jaccard(a,b){const A=new Set(a),B=new Set(b);let i=0;for(const x of A)if(B.has(x))i++;return i/(A.size+B.size-i||1);}
+function idfOverlap(a,b,idf){const A=new Set(a),B=new Set(b);let shared=0,total=0;for(const t of new Set([...A,...B])){const w=idf.get(t)||1;total+=w;if(A.has(t)&&B.has(t))shared+=w;}return total?shared/total:0;}
+function ngrams(ts,n=2){const out=[];for(let i=0;i<=ts.length-n;i++)out.push(ts.slice(i,i+n).join(' '));return out;}
+function pairAgreement(cluster){if(cluster.length<2)return .42;const docs=cluster.map(x=>({_tokens:tokens(`${x.title} ${x.description}`).slice(0,100)}));const idf=buildIdf(docs);const vec=docs.map(d=>vector(d,idf));let sum=0,n=0;for(let i=0;i<docs.length;i++)for(let j=i+1;j<docs.length;j++){sum+=.72*cosine(vec[i],vec[j])+.28*idfOverlap(docs[i]._tokens,docs[j]._tokens,idf);n++;}return clamp(sum/(n||1),0,1);}
 
-async function collectSource(source){
-  const started=Date.now();
-  try{
-    const url=source.direct||googleNewsUrl(source); const {text}=await fetchText(url,8000); const items=parseRss(text,source).slice(0,18);
-    return {source:source.id,ok:true,count:items.length,ms:Date.now()-started,items};
-  }catch(error){ return {source:source.id,ok:false,count:0,ms:Date.now()-started,error:error.name==='AbortError'?'timeout':String(error.message||error),items:[]}; }
-}
-
-function relevance(article){
-  const ts=tokens(`${article.title} ${article.description}`); if(!ts.length)return 0;
-  const trendHits=ts.filter(t=>TREND_TERMS.has(t)).length; const blocked=ts.filter(t=>BLOCK_TERMS.has(t)).length;
-  const sourceBonus=article.source.type==='trend-research'||article.source.type==='platform-editorial'||article.source.type==='market-research'?0.16:0;
-  return clamp((trendHits/Math.min(12,ts.length))*1.8 + sourceBonus - blocked*0.22,0,1);
-}
-function blockedArticle(article){ const ts=tokens(`${article.title} ${article.description}`); return ts.filter(t=>BLOCK_TERMS.has(t)).length>=2; }
-
-async function enrichArticle(article){
-  if(article.source.type==='search-signal') return {...article,body:`${article.title}. ${article.description}`};
-  try{
-    const {text,finalUrl}=await fetchText(article.url,6500);
-    const desc=(text.match(/<meta[^>]+(?:name|property)=["'](?:description|og:description)["'][^>]+content=["']([^"']+)["']/i)||text.match(/<meta[^>]+content=["']([^"']+)["'][^>]+(?:name|property)=["'](?:description|og:description)["']/i)||[])[1]||'';
-    const articleHtml=(text.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)||[])[1]||'';
-    const body=stripHtml(articleHtml||desc||article.description).slice(0,7000);
-    return {...article,url:safeUrl(finalUrl)||article.url,description:stripHtml(desc)||article.description,body:body||`${article.title}. ${article.description}`};
-  }catch{ return {...article,body:`${article.title}. ${article.description}`}; }
-}
-
-function buildIdf(docs){
-  const df=new Map(); for(const doc of docs){ for(const t of new Set(doc._tokens)) df.set(t,(df.get(t)||0)+1); }
-  const n=docs.length||1; const idf=new Map(); for(const [t,c] of df) idf.set(t,Math.log((1+n)/(1+c))+1); return idf;
-}
-function vector(doc,idf){ const tf=new Map(); for(const t of doc._tokens)tf.set(t,(tf.get(t)||0)+1); const v=new Map(); const denom=doc._tokens.length||1; for(const [t,c] of tf)v.set(t,(c/denom)*(idf.get(t)||1)); return v; }
-function cosine(a,b){ let dot=0,aa=0,bb=0; for(const v of a.values())aa+=v*v; for(const v of b.values())bb+=v*v; const [small,other]=a.size<b.size?[a,b]:[b,a]; for(const [k,v] of small)dot+=v*(other.get(k)||0); return dot/(Math.sqrt(aa)*Math.sqrt(bb)||1); }
-function jaccard(a,b){ const A=new Set(a),B=new Set(b); let i=0; for(const x of A)if(B.has(x))i++; return i/(A.size+B.size-i||1); }
-
+function classifyCategory(articleOrCluster){const text=Array.isArray(articleOrCluster)?articleOrCluster.map(x=>`${x.title} ${x.description}`).join(' '):`${articleOrCluster.title} ${articleOrCluster.description||''}`;const ts=tokens(text);let best='Culture',bestScore=0;for(const[cat,words]of Object.entries(CATEGORY_LEXICON)){const W=words.map(stem);const s=ts.reduce((n,t)=>n+(W.includes(t)?1:0),0);if(s>bestScore){best=cat;bestScore=s;}}return best;}
 function clusterArticles(articles){
-  const docs=articles.map(a=>({...a,_tokens:tokens(`${a.title} ${a.description} ${a.body||''}`).slice(0,220)})); const idf=buildIdf(docs); docs.forEach(d=>d._vector=vector(d,idf));
-  const parent=docs.map((_,i)=>i); const find=i=>parent[i]===i?i:(parent[i]=find(parent[i])); const union=(a,b)=>{a=find(a);b=find(b);if(a!==b)parent[b]=a;};
-  for(let i=0;i<docs.length;i++)for(let j=i+1;j<docs.length;j++){
-    const sameCategory=classifyCategory(docs[i])===classifyCategory(docs[j]); const sim=cosine(docs[i]._vector,docs[j]._vector); const titleSim=jaccard(tokens(docs[i].title),tokens(docs[j].title));
-    if((sim>=0.31&&sameCategory)||(titleSim>=0.28&&sim>=0.16))union(i,j);
-  }
-  const groups=new Map(); docs.forEach((d,i)=>{const r=find(i);if(!groups.has(r))groups.set(r,[]);groups.get(r).push(d);});
-  return [...groups.values()];
-}
-
-function classifyCategory(articleOrCluster){
-  const text=Array.isArray(articleOrCluster)?articleOrCluster.map(x=>`${x.title} ${x.description}`).join(' '):`${articleOrCluster.title} ${articleOrCluster.description||''}`;
-  const ts=tokens(text); let best='Culture',bestScore=0;
-  for(const [cat,words] of Object.entries(CATEGORY_LEXICON)){ const W=words.map(stem); const s=ts.reduce((n,t)=>n+(W.includes(t)?1:0),0); if(s>bestScore){best=cat;bestScore=s;} }
-  return best;
-}
-function inferAudience(cluster){
-  const text=normalizeText(cluster.map(x=>`${x.title} ${x.description}`).join(' ')); if(/gen\s*z|generacion\s*z|generación\s*z/.test(text)&&/millennial/.test(text))return ['Both','Menciona explícitamente a Gen Z y Millennials en la evidencia recopilada.'];
-  if(/gen\s*z|generacion\s*z|generación\s*z/.test(text))return ['Gen Z','La evidencia recopilada menciona explícitamente a Gen Z.'];
-  if(/millennial/.test(text))return ['Millennials','La evidencia recopilada menciona explícitamente a Millennials.'];
-  const ts=tokens(text); const gz=ts.filter(t=>GENZ.has(t)).length; const ml=ts.filter(t=>MILLENNIAL.has(t)).length;
-  if(gz>=ml+3)return ['Gen Z','Afinidad inferida por el tipo de señal y sus códigos culturales; no se presenta como medición demográfica de plataforma.'];
-  if(ml>=gz+3)return ['Millennials','Afinidad inferida por el tipo de señal y contexto de consumo; no se presenta como medición demográfica de plataforma.'];
-  return ['Both','La señal cruza intereses relevantes para adultos Gen Z y Millennials; la afinidad es una clasificación editorial, no una medición demográfica.'];
-}
-function inferRegion(cluster){
-  const text=normalizeText(cluster.map(x=>`${x.title} ${x.description}`).join(' '));
-  if(/mexico|cdmx|mexican|mexicano|mexicana|guadalajara|monterrey/.test(text)||cluster.some(x=>x.source.region==='MX'))return ['MX','México'];
-  if(/latam|latinoamerica|latin america|brasil|brazil|argentina|colombia|chile|peru/.test(text)||cluster.some(x=>x.source.region==='LATAM'))return ['LATAM','Latinoamérica'];
-  return ['GLOBAL','Global'];
-}
-
-function sentenceSplit(text){ return stripHtml(text).replace(/\s+/g,' ').split(/(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÑ¿¡0-9])/).map(s=>s.trim()).filter(s=>s.length>=35&&s.length<=360); }
-function textRankSummary(cluster,maxSentences=2){
-  const sentences=unique(cluster.flatMap(x=>sentenceSplit(`${x.description||''}. ${x.body||''}`))).slice(0,60); if(!sentences.length)return cleanTitle(cluster[0]?.title||'Señal emergente');
-  const docs=sentences.map(s=>({_tokens:tokens(s).slice(0,80)})); const idf=buildIdf(docs); const vec=docs.map(d=>vector(d,idf)); const n=sentences.length; const scores=Array(n).fill(1/n);
-  for(let iter=0;iter<14;iter++){ const next=Array(n).fill(0.15/n); for(let i=0;i<n;i++){ let sum=0; const sims=[]; for(let j=0;j<n;j++){if(i===j){sims[j]=0;continue;}sims[j]=cosine(vec[i],vec[j]);sum+=sims[j];} if(sum)for(let j=0;j<n;j++)next[j]+=0.85*scores[i]*(sims[j]/sum); } for(let i=0;i<n;i++)scores[i]=next[i]; }
-  const picked=scores.map((s,i)=>({s,i})).sort((a,b)=>b.s-a.s).slice(0,maxSentences).sort((a,b)=>a.i-b.i).map(x=>sentences[x.i]);
-  return picked.join(' ').slice(0,520);
-}
-function topKeywords(cluster,n=5){
-  const docs=cluster.map(x=>({_tokens:tokens(`${x.title} ${x.description} ${x.body||''}`).slice(0,200)})); const idf=buildIdf(docs); const scores=new Map();
-  for(const d of docs){const v=vector(d,idf);for(const [t,s] of v)scores.set(t,(scores.get(t)||0)+s);} return [...scores].sort((a,b)=>b[1]-a[1]).map(x=>x[0]).filter(x=>x.length>3).slice(0,n);
-}
-function centralArticle(cluster){
-  if(cluster.length===1)return cluster[0]; const docs=cluster.map(x=>({...x,_tokens:tokens(`${x.title} ${x.description}`)})); const idf=buildIdf(docs); const vec=docs.map(d=>vector(d,idf)); let best=0,bestScore=-1;
-  for(let i=0;i<docs.length;i++){let s=0;for(let j=0;j<docs.length;j++)if(i!==j)s+=cosine(vec[i],vec[j]);if(s>bestScore){best=i;bestScore=s;}} return cluster[best];
-}
-function hashUnit(s){ let h=2166136261; for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619);} return ((h>>>0)%1000)/1000; }
-function buildSeries(score,stage,id){
-  const delta={Spark:22,Rising:18,Accelerating:25,Building:12,Mainstream:5,Cooling:-12,Shift:8}[stage]??10; const jitter=(hashUnit(id)-0.5)*4; const start=clamp(score-delta-jitter,18,95); const arr=[];
-  for(let i=0;i<6;i++){ const t=i/5; let v=start+(score-start)*t; if(stage==='Cooling')v=clamp(score+12-(12*t),10,100); arr.push(Math.round(clamp(v+(i===5?0:(hashUnit(`${id}-${i}`)-0.5)*5),0,100))); } arr[5]=Math.round(score); return arr;
-}
-function networkScores(cluster,score,category){
-  const base={TikTok:35,Instagram:35,YouTube:35,Google:35,Pinterest:35}; const domains=cluster.map(x=>x.source.domain);
-  if(domains.some(x=>x.includes('tiktok')))base.TikTok=88; if(domains.some(x=>x.includes('youtube')))base.YouTube=88; if(domains.some(x=>x.includes('pinterest')))base.Pinterest=88; if(cluster.some(x=>x.source.type==='search-signal'||x.source.domain.includes('google')))base.Google=88;
-  if(['Beauty','Fashion','Food & Beverage','Travel & Experiences'].includes(category)){base.Instagram=Math.max(base.Instagram,64);base.Pinterest=Math.max(base.Pinterest,68);base.TikTok=Math.max(base.TikTok,65);} if(['Entertainment & Music','Gaming & Sports','Tech & Productivity'].includes(category)){base.YouTube=Math.max(base.YouTube,70);base.TikTok=Math.max(base.TikTok,66);}
-  return Object.fromEntries(Object.entries(base).map(([k,v])=>[k,Math.round(clamp(v+(score-65)*0.25,20,95))]));
-}
-function parseTraffic(s=''){ const m=String(s).replace(/,/g,'').match(/([\d.]+)\s*([KkMm])?\+?/); if(!m)return 0; let n=Number(m[1]); if(m[2]?.toLowerCase()==='k')n*=1000;if(m[2]?.toLowerCase()==='m')n*=1000000;return n; }
-
-function scoreCluster(cluster){
-  const sources=unique(cluster.map(x=>x.source.id)); const types=unique(cluster.map(x=>x.source.type)); const avgAuthority=cluster.reduce((s,x)=>s+x.source.authority,0)/cluster.length; const avgAge=cluster.reduce((s,x)=>s+daysAgo(x.publishedAt),0)/cluster.length;
-  const recency=Math.exp(-avgAge/18); const cross=clamp(Math.log2(1+sources.length)/2.5,0,1); const typeDiversity=clamp(types.length/4,0,1); const hasMX=cluster.some(x=>x.source.region==='MX')?1:cluster.some(x=>x.source.region==='LATAM')?0.75:0.48; const searchTraffic=Math.max(...cluster.map(x=>parseTraffic(x.traffic)),0); const searchBoost=searchTraffic?clamp(Math.log10(searchTraffic+1)/6,0,1):0;
-  const commercial=['Beauty','Fashion','Food & Beverage','Retail & e-commerce','Travel & Experiences','Wellness & Fitness','Tech & Productivity','Entertainment & Music','Gaming & Sports','Finance & Value'].includes(classifyCategory(cluster))?0.88:0.68;
-  const momentum=clamp(0.56*recency+0.24*cross+0.20*searchBoost,0,1); const evidence=clamp(0.65*cross+0.35*typeDiversity,0,1);
-  const raw=100*(0.27*momentum+0.23*hasMX+0.20*evidence+0.16*avgAuthority+0.14*commercial); const score=Math.round(clamp(raw,28,96));
-  let stage='Building'; if(avgAge<=5&&sources.length<=1)stage='Spark'; if(score>=72)stage='Rising'; if(score>=82&&sources.length>=3)stage='Accelerating'; if(sources.length>=5&&avgAge>12)stage='Mainstream'; if(avgAge>24&&recency<0.3)stage='Cooling';
-  return {score,stage,sources,types,avgAuthority,avgAge,momentum,evidence,searchTraffic};
-}
-
-function trendFromCluster(cluster,index){
-  const rep=centralArticle(cluster); const category=classifyCategory(cluster); const [audience,audienceWhy]=inferAudience(cluster); const [region,regionLabel]=inferRegion(cluster); const stats=scoreCluster(cluster); const kws=topKeywords(cluster,5); const summary=textRankSummary(cluster,2); const id=`${slug(rep.title)}-${index+1}`;
-  const observed=stats.searchTraffic?`${Intl.NumberFormat('es-MX',{notation:'compact'}).format(stats.searchTraffic)}+ búsquedas`:`${stats.sources.length} ${stats.sources.length===1?'fuente':'fuentes'} · ${cluster.length} ${cluster.length===1?'señal':'señales'}`;
-  const watchout=stats.sources.length===1?'Evidencia temprana: por ahora depende de una sola fuente. Conviene confirmar persistencia o una segunda señal antes de convertirla en una campaña grande.':stats.avgAge>18?'La señal tiene persistencia, pero puede estar acercándose a una fase madura. Prioriza una ejecución distintiva en lugar de copiar el formato.':'La evidencia cruza varias publicaciones, pero el fit cultural debe validarse por categoría y comunidad antes de activar.';
-  return { id,title:cleanTitle(rep.title),kicker:`${category.toUpperCase()} · ${stats.stage.toUpperCase()}`,region,regionLabel,stage:stats.stage,segment:category,segments:[category],audience,audienceWhy,score:stats.score,metric:observed,metricLabel:stats.searchTraffic?'Google Trends / búsqueda':'Evidencia recopilada',platform:rep.source.name,summary:summary||`${rep.title}.`,impact:IMPACT_BY_CATEGORY[category]||IMPACT_BY_CATEGORY.Culture,creator:CREATOR_BY_CATEGORY[category]||CREATOR_BY_CATEGORY.Culture,watchout,source:rep.source.name,sourceUrl:safeUrl(rep.url)||`https://${rep.source.domain}`,series:buildSeries(stats.score,stats.stage,id),networks:networkScores(cluster,stats.score,category),keywords:kws,evidence:cluster.slice(0,8).map(x=>({title:x.title,source:x.source.name,url:safeUrl(x.url)||`https://${x.source.domain}`,publishedAt:x.publishedAt})),model:{momentum:Number(stats.momentum.toFixed(3)),evidence:Number(stats.evidence.toFixed(3)),authority:Number(stats.avgAuthority.toFixed(3)),ageDays:Number(stats.avgAge.toFixed(1))} };
-}
-
-function buildIndustries(trends){
-  const cats=Object.keys(CATEGORY_LEXICON); const groups=cats.map(name=>({name,items:trends.filter(t=>t.segment===name)})).filter(x=>x.items.length).sort((a,b)=>Math.max(...b.items.map(x=>x.score))-Math.max(...a.items.map(x=>x.score))).slice(0,7);
-  return groups.map((g,i)=>{ const top=[...g.items].sort((a,b)=>b.score-a.score); const avg=Math.round(top.reduce((s,x)=>s+x.score,0)/top.length); return {id:slug(g.name),name:g.name,score:avg,mood:top[0].stage==='Accelerating'?'Momentum alto':'Señales en construcción',fact:`${top.length} señal${top.length===1?'':'es'} detectada${top.length===1?'':'s'} en el research actual; score medio ${avg}/100.`,signals:top.slice(0,3).map(x=>x.title).concat(['Señal en observación','Señal en observación']).slice(0,3),action:IMPACT_BY_CATEGORY[g.name]||IMPACT_BY_CATEGORY.Culture,source:unique(top.flatMap(x=>x.evidence?.map(e=>e.source)||[])).slice(0,3).join(' · ')}; });
-}
-
-function editorialFromTrends(trends){
-  const top=[...trends].sort((a,b)=>b.score-a.score).slice(0,3); const cats=unique(top.map(x=>x.segment));
-  return {eyebrow:'LUMA / PULSE',headline:'Lo que está ganando momentum esta semana.',deck:`Señales detectadas automáticamente entre fuentes de México, LATAM y contexto global, con foco en Gen Z y Millennials. Esta semana destacan ${cats.slice(0,3).join(', ')}. La selección final sigue bajo control editorial humano.`};
-}
-
-export async function runPulseResearch(){
-  const now=new Date(); const week=isoWeek(now); const started=Date.now();
-  const results=await Promise.all(SOURCE_CATALOG.map(collectSource)); let articles=results.flatMap(r=>r.items).filter(a=>!blockedArticle(a));
-  articles=articles.map(a=>({...a,_relevance:relevance(a)})).filter(a=>a._relevance>=0.12).sort((a,b)=>(b._relevance*b.source.authority*Math.exp(-daysAgo(b.publishedAt)/28))-(a._relevance*a.source.authority*Math.exp(-daysAgo(a.publishedAt)/28)));
-  const seen=new Set(); articles=articles.filter(a=>{const k=normalizeText(a.title);if(seen.has(k))return false;seen.add(k);return true;}).slice(0,90);
-  const enriched=await Promise.all(articles.slice(0,54).map(enrichArticle)); const remaining=articles.slice(54).map(a=>({...a,body:`${a.title}. ${a.description}`})); const all=[...enriched,...remaining];
-  const clusters=clusterArticles(all).filter(c=>c.length>=2||c[0]?._relevance>=0.34).sort((a,b)=>scoreCluster(b).score-scoreCluster(a).score);
-  let trends=clusters.map(trendFromCluster).filter(t=>t.score>=45);
-  // Preserve source/category diversity: at most 3 signals from the same primary source and 3 per category.
-  const srcCount=new Map(),catCount=new Map(); trends=trends.filter(t=>{const s=srcCount.get(t.source)||0,c=catCount.get(t.segment)||0;if(s>=3||c>=3)return false;srcCount.set(t.source,s+1);catCount.set(t.segment,c+1);return true;}).slice(0,18);
-  if(trends.length<8){ trends=clusters.slice(0,12).map(trendFromCluster).slice(0,12); }
-  const mxUpdated=new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'short',year:'numeric',timeZone:'America/Mexico_City'}).format(now); const mxMonth=new Intl.DateTimeFormat('es-MX',{month:'long',year:'numeric',timeZone:'America/Mexico_City'}).format(now);
-  const sourceHealth=results.map(r=>({id:r.source,ok:r.ok,count:r.count,ms:r.ms,error:r.error||null}));
-  const candidate={
-    meta:{issue:`W${week}`,week:`Semana ${week} · ${mxUpdated}`,month:mxMonth.charAt(0).toUpperCase()+mxMonth.slice(1),updated:mxUpdated,coverage:'México · LATAM · Global · Gen Z + Millennials',methodology:'Automated source collection + TF-IDF/cosine clustering + TextRank extractive summaries + deterministic LUMA scoring. No generative AI or AI agent.',generatedAt:now.toISOString(),status:'candidate',engine:'LUMA Signal Engine v6 · classical ML/NLP',pipeline:{sources:SOURCE_CATALOG.length,sourcesOk:results.filter(r=>r.ok).length,rawItems:results.reduce((s,r)=>s+r.count,0),normalizedItems:all.length,clusters:clusters.length,candidates:trends.length,durationMs:Date.now()-started}},
-    editorial:editorialFromTrends(trends),trends,industries:buildIndustries(trends),sources:publicSourceCatalog().map(s=>({...s,note:'Curated input source for the weekly ML/NLP research engine.'})),sourceHealth
+  const docs=articles.map(a=>({...a,_tokens:tokens(`${a.title} ${a.title} ${a.description} ${a.body||''}`).slice(0,260),_titleTokens:tokens(a.title),_category:classifyCategory(a)}));
+  const idf=buildIdf(docs); docs.forEach(d=>d._vector=vector(d,idf));
+  const similarity=(a,b)=>{
+    const cos=cosine(a._vector,b._vector); const titleJ=jaccard(a._titleTokens,b._titleTokens); const weighted=idfOverlap(a._titleTokens,b._titleTokens,idf); const phrase=jaccard(ngrams(a._titleTokens),ngrams(b._titleTokens));
+    let hybrid=.48*cos+.20*titleJ+.22*weighted+.10*phrase;
+    if(a._category===b._category)hybrid+=.035; else hybrid-=.055;
+    if(a.source.id===b.source.id)hybrid-=.035;
+    return {hybrid,cos,titleJ,weighted,phrase};
   };
-  if(!trends.length) throw new Error('The source collector ran but no trend candidates passed the relevance filters. Check source health in the admin and try again later.');
-  return candidate;
+  const ordered=[...docs].sort((a,b)=>(b._relevance*b.source.authority)-(a._relevance*a.source.authority));
+  const clusters=[];
+  for(const doc of ordered){
+    let best=null,bestScore=-1;
+    for(const cluster of clusters){
+      const sims=cluster.map(member=>similarity(doc,member)).sort((a,b)=>b.hybrid-a.hybrid);
+      const max=sims[0]; const top=sims.slice(0,Math.min(3,sims.length)); const avg=top.reduce((sum,x)=>sum+x.hybrid,0)/(top.length||1);
+      const sameCategory=cluster.filter(x=>x._category===doc._category).length/cluster.length;
+      const qualifies=(max.hybrid>=.35&&avg>=.245&&sameCategory>=.5)||(max.titleJ>=.32&&max.cos>=.14)||(max.phrase>=.22&&max.cos>=.14);
+      const score=.58*max.hybrid+.42*avg;
+      if(qualifies&&score>bestScore){best=cluster;bestScore=score;}
+    }
+    if(best)best.push(doc); else clusters.push([doc]);
+  }
+  return clusters;
 }
+
+function inferAudience(cluster){const text=normalizeText(cluster.map(x=>`${x.title} ${x.description}`).join(' '));if(/gen\s*z|generacion\s*z/.test(text)&&/millennial/.test(text))return['Both','La evidencia menciona explícitamente a Gen Z y Millennials.',.95];if(/gen\s*z|generacion\s*z/.test(text))return['Gen Z','La evidencia menciona explícitamente a Gen Z.',.92];if(/millennial/.test(text))return['Millennials','La evidencia menciona explícitamente a Millennials.',.92];const ts=tokens(text);const gz=ts.filter(t=>GENZ.has(t)).length;const ml=ts.filter(t=>MILLENNIAL.has(t)).length;const gap=Math.abs(gz-ml);if(gz>=ml+3)return['Gen Z','Afinidad inferida por códigos culturales y formato; no es una medición demográfica de plataforma.',clamp(.58+gap*.04,.58,.82)];if(ml>=gz+3)return['Millennials','Afinidad inferida por contexto de consumo y etapa de vida; no es una medición demográfica de plataforma.',clamp(.58+gap*.04,.58,.82)];return['Both','La señal cruza intereses relevantes para adultos Gen Z y Millennials; es una clasificación editorial.',.55];}
+function inferRegion(cluster){const text=normalizeText(cluster.map(x=>`${x.title} ${x.description}`).join(' '));if(/mexico|cdmx|mexican|mexicano|mexicana|guadalajara|monterrey|puebla|queretaro|merida/.test(text)||cluster.some(x=>x.source.region==='MX'))return['MX','México'];if(/latam|latinoamerica|latin america|brasil|brazil|argentina|colombia|chile|peru/.test(text)||cluster.some(x=>x.source.region==='LATAM'))return['LATAM','Latinoamérica'];return['GLOBAL','Global'];}
+function sentenceSplit(text){return stripHtml(text).replace(/\s+/g,' ').split(/(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÑ¿¡0-9])/).map(s=>s.trim()).filter(s=>s.length>=35&&s.length<=360);}
+function textRankSummary(cluster,maxSentences=2){const sentences=unique(cluster.flatMap(x=>sentenceSplit(`${x.description||''}. ${x.body||''}`))).slice(0,72);if(!sentences.length)return cleanTitle(cluster[0]?.title||'Señal emergente');const docs=sentences.map(s=>({_tokens:tokens(s).slice(0,90)}));const idf=buildIdf(docs);const vec=docs.map(d=>vector(d,idf));const n=sentences.length;const scores=Array(n).fill(1/n);for(let iter=0;iter<16;iter++){const next=Array(n).fill(.15/n);for(let i=0;i<n;i++){let sum=0;const sims=[];for(let j=0;j<n;j++){if(i===j){sims[j]=0;continue;}sims[j]=cosine(vec[i],vec[j]);sum+=sims[j];}if(sum)for(let j=0;j<n;j++)next[j]+=.85*scores[i]*(sims[j]/sum);}for(let i=0;i<n;i++)scores[i]=next[i];}const ranked=scores.map((s,i)=>({s,i})).sort((a,b)=>b.s-a.s);const picked=[];for(const cand of ranked){if(picked.every(p=>cosine(vec[cand.i],vec[p.i])<.58)){picked.push(cand);if(picked.length>=maxSentences)break;}}return picked.sort((a,b)=>a.i-b.i).map(x=>sentences[x.i]).join(' ').slice(0,540);}
+function topKeywords(cluster,n=7){const docs=cluster.map(x=>({_tokens:tokens(`${x.title} ${x.title} ${x.description} ${x.body||''}`).slice(0,240)}));const idf=buildIdf(docs);const scores=new Map();for(const d of docs){const v=vector(d,idf);for(const[t,s]of v)scores.set(t,(scores.get(t)||0)+s);}return[...scores].sort((a,b)=>b[1]-a[1]).map(x=>x[0]).filter(x=>x.length>3).slice(0,n);}
+function keyPhrases(cluster,n=5){const counts=new Map();for(const a of cluster){const ts=tokens(a.title);for(const size of[2,3])for(const phrase of ngrams(ts,size)){if(phrase.split(' ').every(x=>x.length>3))counts.set(phrase,(counts.get(phrase)||0)+1+(a.source.role==='signal'?.25:0));}}return[...counts].sort((a,b)=>b[1]-a[1]).map(x=>x[0]).slice(0,n);}
+function centralArticle(cluster){if(cluster.length===1)return cluster[0];const docs=cluster.map(x=>({...x,_tokens:tokens(`${x.title} ${x.description}`)}));const idf=buildIdf(docs);const vec=docs.map(d=>vector(d,idf));let best=0,bestScore=-1;for(let i=0;i<docs.length;i++){let s=0;for(let j=0;j<docs.length;j++)if(i!==j)s+=cosine(vec[i],vec[j]);s+=docs[i].source.authority*.35+(docs[i].source.region==='MX'?.18:0);if(s>bestScore){best=i;bestScore=s;}}return cluster[best];}
+function parseTraffic(s=''){const m=String(s).replace(/,/g,'').match(/([\d.]+)\s*([KkMm])?\+?/);if(!m)return 0;let n=Number(m[1]);if(m[2]?.toLowerCase()==='k')n*=1e3;if(m[2]?.toLowerCase()==='m')n*=1e6;return n;}
+function historySimilarity(cluster,history=[]){const current=tokens(cluster.map(x=>x.title).join(' '));let best=null,bestSim=0,editionMatches=0;for(const edition of history||[]){let editionBest=0;for(const t of edition.trends||[]){const hist=tokens(`${t.title||''} ${(t.keywords||[]).join(' ')}`);const sim=.65*jaccard(current,hist)+.35*jaccard(ngrams(current),ngrams(hist));editionBest=Math.max(editionBest,sim);if(sim>bestSim){bestSim=sim;best=t;}}if(editionBest>=.18)editionMatches++;}return{similarity:bestSim,match:bestSim>=.18?best:null,editionMatches};}
+function temporalStats(cluster){const recent=cluster.filter(x=>daysAgo(x.publishedAt)<=7).length;const prior=cluster.filter(x=>{const d=daysAgo(x.publishedAt);return d>7&&d<=30;}).length;const burst=clamp((recent+1)/((prior/3)+1)/2.2,0,1);return{recent,prior,burst};}
+function commercialFit(category){return ['Beauty','Fashion','Food & Beverage','Retail & e-commerce','Travel & Experiences','Wellness & Fitness','Tech & Productivity','Entertainment & Music','Gaming & Sports','Finance & Value'].includes(category)?.90:.72;}
+function scoreCluster(cluster,history=[]){const category=classifyCategory(cluster);const sources=unique(cluster.map(x=>x.source.id));const types=unique(cluster.map(x=>x.source.type));const roles=unique(cluster.map(x=>x.source.role));const avgAuthority=cluster.reduce((s,x)=>s+x.source.authority,0)/cluster.length;const avgAge=cluster.reduce((s,x)=>s+daysAgo(x.publishedAt),0)/cluster.length;const recency=Math.exp(-avgAge/20);const sourceDiversity=clamp(Math.log2(1+sources.length)/2.8,0,1);const roleDiversity=clamp(roles.length/4,0,1);const typeDiversity=clamp(types.length/5,0,1);const agreement=pairAgreement(cluster);const local=cluster.some(x=>x.source.region==='MX')?1:cluster.some(x=>x.source.region==='LATAM')?.78:.48;const searchTraffic=Math.max(...cluster.map(x=>parseTraffic(x.traffic)),0);const searchBoost=searchTraffic?clamp(Math.log10(searchTraffic+1)/6,0,1):0;const temporal=temporalStats(cluster);const hist=historySimilarity(cluster,history);const persistence=hist.match?clamp(.18+Math.min(3,hist.editionMatches)/3*.52+hist.similarity*.42,0,1):.12;const novelty=clamp(1-hist.similarity*2.4,0,1);const evidence=clamp(.38*sourceDiversity+.24*roleDiversity+.18*typeDiversity+.20*agreement,0,1);const momentum=clamp(.34*recency+.24*temporal.burst+.18*sourceDiversity+.12*searchBoost+.12*novelty,0,1);const commercial=commercialFit(category);const base=100*(.24*momentum+.19*local+.19*evidence+.14*avgAuthority+.12*commercial+.07*persistence+.05*novelty);const score=Math.round(clamp(base,30,97));const confidence=Math.round(clamp(100*(.30*sourceDiversity+.22*roleDiversity+.20*avgAuthority+.18*agreement+.10*recency),32,96));const saturation=clamp(.45*sourceDiversity+.30*(avgAge>12?1:avgAge/12)+.25*(sources.length>=6?1:sources.length/6),0,1);const whitespace=clamp(.62*commercial+.38*(1-saturation),0,1);let stage='Building';if(avgAge<=5&&sources.length<=1)stage='Spark';if(score>=68&&sources.length>=2)stage='Rising';if(score>=80&&sources.length>=3&&temporal.burst>.38)stage='Accelerating';if(sources.length>=6&&avgAge>10)stage='Mainstream';if(avgAge>24&&recency<.32)stage='Cooling';let archetype='Emerging trend';if(temporal.burst>.62&&persistence<.35)archetype='Cultural moment';if((hist.editionMatches>=2&&persistence>.55&&roles.includes('evidence'))||(roles.includes('foresight')&&roles.includes('evidence')&&avgAge>8&&sourceDiversity>.45))archetype='Structural shift';const previousScore=hist.match?.score||null;const velocity=previousScore==null?Math.round(momentum*100):Math.round(clamp(50+(score-previousScore)*2.5,0,100));return{score,confidence,stage,archetype,sources,types,roles,avgAuthority,avgAge,momentum,evidence,agreement,searchTraffic,burst:temporal.burst,recentItems:temporal.recent,priorItems:temporal.prior,persistence,novelty,whitespace,velocity,historyMatch:hist.match?.id||null,historyEditionsMatched:hist.editionMatches,previousScore};}
+function hashUnit(s){let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return((h>>>0)%1000)/1000;}
+function buildSeries(score,stage,id,previousScore=null){const arr=[];const start=previousScore!=null?clamp(previousScore-8,18,95):clamp(score-({Spark:20,Rising:16,Accelerating:24,Building:10,Mainstream:5,Cooling:-10}[stage]??10),18,95);for(let i=0;i<6;i++){const t=i/5;let v=start+(score-start)*t;if(stage==='Cooling')v=clamp(start-(start-score)*t,10,100);arr.push(Math.round(clamp(v+(i===5?0:(hashUnit(`${id}-${i}`)-.5)*4),0,100)));}arr[5]=Math.round(score);return arr;}
+function networkScores(cluster,score,category){const base={TikTok:28,Instagram:28,YouTube:28,Google:28,Pinterest:28};const domains=cluster.map(x=>x.source.domain);if(domains.some(x=>x.includes('tiktok')))base.TikTok=90;if(domains.some(x=>x.includes('youtube')))base.YouTube=90;if(domains.some(x=>x.includes('pinterest')))base.Pinterest=90;if(domains.some(x=>x.includes('about.fb.com')))base.Instagram=82;if(cluster.some(x=>x.source.type==='search-signal'||x.source.domain.includes('google')))base.Google=90;if(['Beauty','Fashion','Food & Beverage','Travel & Experiences'].includes(category)){base.Instagram=Math.max(base.Instagram,62);base.Pinterest=Math.max(base.Pinterest,66);base.TikTok=Math.max(base.TikTok,64);}if(['Entertainment & Music','Gaming & Sports','Tech & Productivity'].includes(category)){base.YouTube=Math.max(base.YouTube,68);base.TikTok=Math.max(base.TikTok,64);}return Object.fromEntries(Object.entries(base).map(([k,v])=>[k,Math.round(clamp(v+(score-65)*.22,18,95))]));}
+
+function trendFromCluster(cluster,index,history=[]){const rep=centralArticle(cluster);const category=classifyCategory(cluster);const[audience,audienceWhy,audienceConfidence]=inferAudience(cluster);const[region,regionLabel]=inferRegion(cluster);const stats=scoreCluster(cluster,history);const kws=topKeywords(cluster,7);const phrases=keyPhrases(cluster,5);const summary=textRankSummary(cluster,2);const id=`${slug(rep.title)}-${index+1}`;const observed=stats.searchTraffic?`${Intl.NumberFormat('es-MX',{notation:'compact'}).format(stats.searchTraffic)}+ búsquedas`:`${stats.sources.length} ${stats.sources.length===1?'fuente':'fuentes'} · ${cluster.length} ${cluster.length===1?'señal':'señales'}`;const watchout=stats.confidence<55?'Confidence limitada: la señal todavía necesita corroboración adicional antes de sostener una inversión grande.':stats.stage==='Mainstream'?'La señal ya tiene amplia cobertura. El valor está en una interpretación distintiva, no en copiar el formato dominante.':stats.sources.length===1?'Evidencia temprana: conviene confirmar persistencia o una segunda fuente antes de escalar.':'La evidencia cruza varias fuentes, pero el fit cultural debe validarse por categoría y comunidad antes de activar.';return{id,title:cleanTitle(rep.title),kicker:`${category.toUpperCase()} · ${stats.archetype.toUpperCase()}`,region,regionLabel,stage:stats.stage,archetype:stats.archetype,segment:category,segments:[category],audience,audienceWhy,audienceConfidence:Math.round(audienceConfidence*100),score:stats.score,confidence:stats.confidence,metric:observed,metricLabel:stats.searchTraffic?'Google Trends / búsqueda':'Evidencia recopilada',platform:rep.source.name,summary:summary||`${rep.title}.`,impact:IMPACT_BY_CATEGORY[category]||IMPACT_BY_CATEGORY.Culture,creator:CREATOR_BY_CATEGORY[category]||CREATOR_BY_CATEGORY.Culture,watchout,source:rep.source.name,sourceUrl:safeUrl(rep.url)||`https://${rep.source.domain}`,series:buildSeries(stats.score,stats.stage,id,stats.previousScore),networks:networkScores(cluster,stats.score,category),keywords:kws,keyPhrases:phrases,evidence:cluster.slice(0,10).map(x=>({title:x.title,source:x.source.name,role:x.source.role,url:safeUrl(x.url)||`https://${x.source.domain}`,publishedAt:x.publishedAt})),model:{momentum:Number(stats.momentum.toFixed(3)),evidence:Number(stats.evidence.toFixed(3)),authority:Number(stats.avgAuthority.toFixed(3)),agreement:Number(stats.agreement.toFixed(3)),burst:Number(stats.burst.toFixed(3)),persistence:Number(stats.persistence.toFixed(3)),novelty:Number(stats.novelty.toFixed(3)),whitespace:Number(stats.whitespace.toFixed(3)),velocity:stats.velocity,confidence:stats.confidence,ageDays:Number(stats.avgAge.toFixed(1)),historyMatch:stats.historyMatch,historyEditionsMatched:stats.historyEditionsMatched,previousScore:stats.previousScore}};}
+function mmrSelect(trends,limit=20){const selected=[];const pool=[...trends].sort((a,b)=>b.score-a.score);while(pool.length&&selected.length<limit){let bestIndex=0,best=-Infinity;for(let i=0;i<pool.length;i++){const t=pool[i];const rel=t.score/100;let redundancy=0;for(const s of selected){const sim=.7*jaccard(tokens(`${t.title} ${t.keywords?.join(' ')}`),tokens(`${s.title} ${s.keywords?.join(' ')}`))+.3*(t.segment===s.segment?1:0);redundancy=Math.max(redundancy,sim);}const geographyBonus=t.region==='MX'?.06:t.region==='LATAM'?.03:0;const value=.76*rel-.24*redundancy+geographyBonus;if(value>best){best=value;bestIndex=i;}}selected.push(pool.splice(bestIndex,1)[0]);}return selected;}
+function buildIndustries(trends){const cats=Object.keys(CATEGORY_LEXICON);const groups=cats.map(name=>({name,items:trends.filter(t=>t.segment===name)})).filter(x=>x.items.length).sort((a,b)=>Math.max(...b.items.map(x=>x.score))-Math.max(...a.items.map(x=>x.score))).slice(0,8);return groups.map(g=>{const top=[...g.items].sort((a,b)=>b.score-a.score);const avg=Math.round(top.reduce((s,x)=>s+x.score,0)/top.length);const conf=Math.round(top.reduce((s,x)=>s+(x.confidence||50),0)/top.length);return{id:slug(g.name),name:g.name,score:avg,confidence:conf,mood:top[0].archetype==='Structural shift'?'Structural change':top[0].stage==='Accelerating'?'High momentum':'Signals building',fact:`${top.length} señal${top.length===1?'':'es'} detectada${top.length===1?'':'s'}; score medio ${avg}/100 y confidence ${conf}%.`,signals:top.slice(0,3).map(x=>x.title),action:IMPACT_BY_CATEGORY[g.name]||IMPACT_BY_CATEGORY.Culture,source:unique(top.flatMap(x=>x.evidence?.map(e=>e.source)||[])).slice(0,4).join(' · ')};});}
+function editorialFromTrends(trends){const top=[...trends].sort((a,b)=>b.score-a.score).slice(0,4);const cats=unique(top.map(x=>x.segment));const structural=top.find(x=>x.archetype==='Structural shift');return{eyebrow:'LUMA / PULSE',headline:'Lo que está ganando momentum esta semana.',deck:`Señales detectadas entre fuentes de México, LATAM y contexto global, con foco en Gen Z y Millennials. Destacan ${cats.slice(0,3).join(', ')}${structural?`, con ${structural.title} como cambio de mayor persistencia`:''}. La selección final permanece bajo control editorial humano.`};}
+
+export async function runPulseResearch({history=[]}={}){const now=new Date();const week=isoWeek(now);const started=Date.now();const results=await Promise.all(SOURCE_CATALOG.map(collectSource));let articles=results.flatMap(r=>r.items).filter(a=>!blockedArticle(a));articles=articles.map(a=>({...a,_relevance:relevance(a)})).filter(a=>a._relevance>=.12).sort((a,b)=>(b._relevance*b.source.authority*Math.exp(-daysAgo(b.publishedAt)/30))-(a._relevance*a.source.authority*Math.exp(-daysAgo(a.publishedAt)/30)));const seen=new Set();articles=articles.filter(a=>{const k=`${a.source.id}|${normalizeText(a.title)}`;if(seen.has(k))return false;seen.add(k);return true;}).slice(0,130);const enrichTarget=articles.slice(0,58);const enriched=await Promise.all(enrichTarget.map(enrichArticle));const remaining=articles.slice(58).map(a=>({...a,body:`${a.title}. ${a.description}`}));const all=[...enriched,...remaining];const clusters=clusterArticles(all).filter(c=>c.length>=2||c[0]?._relevance>=.36).sort((a,b)=>scoreCluster(b,history).score-scoreCluster(a,history).score);let trends=clusters.map((c,i)=>trendFromCluster(c,i,history)).filter(t=>t.score>=43&&t.confidence>=34);trends=mmrSelect(trends,22);const srcCount=new Map(),catCount=new Map();trends=trends.filter(t=>{const s=srcCount.get(t.source)||0,c=catCount.get(t.segment)||0;if(s>=3||c>=4)return false;srcCount.set(t.source,s+1);catCount.set(t.segment,c+1);return true;}).slice(0,20);if(trends.length<8)trends=clusters.slice(0,12).map((c,i)=>trendFromCluster(c,i,history)).slice(0,12);const mxUpdated=new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'short',year:'numeric',timeZone:'America/Mexico_City'}).format(now);const mxMonth=new Intl.DateTimeFormat('es-MX',{month:'long',year:'numeric',timeZone:'America/Mexico_City'}).format(now);const sourceHealth=results.map(r=>({id:r.source,ok:r.ok,count:r.count,ms:r.ms,error:r.error||null}));const roleHealth={};for(const src of SOURCE_CATALOG){const h=sourceHealth.find(x=>x.id===src.id);roleHealth[src.role]??={total:0,healthy:0,items:0};roleHealth[src.role].total++;if(h?.ok)roleHealth[src.role].healthy++;roleHealth[src.role].items+=h?.count||0;}const candidate={meta:{issue:`W${week}`,week:`Semana ${week} · ${mxUpdated}`,month:mxMonth.charAt(0).toUpperCase()+mxMonth.slice(1),updated:mxUpdated,coverage:'México · LATAM · Global · Gen Z + Millennials',methodology:'Curated-source collection + hybrid TF-IDF similarity + IDF-weighted overlap + unsupervised clustering + MMR diversity selection + TextRank extractive summaries + temporal burst/persistence analysis + calibrated LUMA scoring. No generative AI or AI agent.',generatedAt:now.toISOString(),status:'candidate',engine:'LUMA Signal Engine v8 · classical ML/NLP',pipeline:{sources:SOURCE_CATALOG.length,sourcesOk:results.filter(r=>r.ok).length,rawItems:results.reduce((s,r)=>s+r.count,0),normalizedItems:all.length,clusters:clusters.length,candidates:trends.length,historyEditions:history.length,durationMs:Date.now()-started},roleHealth},editorial:editorialFromTrends(trends),trends,industries:buildIndustries(trends),sources:publicSourceCatalog().map(s=>({...s,note:`Curated ${s.role} source used by the LUMA Signal Engine.`})),sourceHealth};if(!trends.length)throw new Error('The source collector ran but no trend candidates passed the relevance and confidence filters. Check source health in the admin and try again later.');return candidate;}

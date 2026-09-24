@@ -16,7 +16,7 @@
 <body class="admin-page">
   <header class="admin-header">
     <a class="brand" href="index.html" aria-label="LUMA Creators"><img src="assets/luma-mark.svg" alt=""/><span class="brand-copy"><b>LUMA</b><small>PULSE EDITOR</small></span></a>
-    <div class="admin-header-actions"><a href="pulse.html" target="_blank">Ver Pulse ↗</a><button id="logout-btn" class="text-btn" type="button">Salir</button></div>
+    <div class="admin-header-actions"><a class="external-link" href="pulse.html" target="_blank">Ver Pulse</a><button id="logout-btn" class="text-btn" type="button">Salir</button></div>
   </header>
 
   <main class="admin-main">
@@ -24,20 +24,20 @@
       <span class="admin-kicker">PRIVATE EDITOR</span>
       <h1>Curate the<br><em>signal.</em></h1>
       <p>El motor investiga fuentes curadas, normaliza, agrupa y puntúa señales sin un agente de AI. Aquí decides qué merece convertirse en la edición pública de LUMA Pulse.</p>
-      <form id="login-form"><label>Admin token<input id="token-input" type="password" autocomplete="current-password" placeholder="LUMA_ADMIN_TOKEN" required></label><button class="admin-primary" type="submit">Entrar →</button></form>
+      <form id="login-form"><label>Admin token<input id="token-input" type="password" autocomplete="current-password" placeholder="LUMA_ADMIN_TOKEN" required></label><button class="admin-primary" type="submit">Entrar</button></form>
       <p class="form-note" id="login-note"></p>
     </section>
 
     <section class="editor-app" id="editor-app" hidden>
       <div class="editor-topline">
-        <div><span class="admin-kicker">WEEKLY EDITION</span><h1>Research → <em>ML/NLP</em> → edit → publish.</h1></div>
+        <div><span class="admin-kicker">WEEKLY EDITION</span><h1>Research / <em>ML + NLP</em> / edit / publish.</h1></div>
         <div class="status-stack"><span id="storage-status" class="status-pill">Storage</span><span id="candidate-status" class="status-pill">No candidate</span></div>
       </div>
 
       <div class="editor-actions">
-        <button id="research-btn" class="admin-primary" type="button">✦ Ejecutar research engine</button>
+        <button id="research-btn" class="admin-primary" type="button">Ejecutar research engine</button>
         <button id="save-btn" class="admin-secondary" type="button">Guardar borrador</button>
-        <button id="publish-btn" class="admin-dark" type="button">Publicar seleccionadas →</button>
+        <button id="publish-btn" class="admin-dark" type="button">Publicar seleccionadas</button>
         <span id="action-status" role="status" aria-live="polite"></span>
       </div>
 
@@ -52,7 +52,7 @@
 
 
       <section class="editorial-panel engine-panel">
-        <div class="panel-head"><div><span class="admin-kicker">RESEARCH ENGINE</span><h2>Pipeline & source health.</h2></div><p>TF-IDF · cosine clustering · TextRank · deterministic scoring</p></div>
+        <div class="panel-head"><div><span class="admin-kicker">RESEARCH ENGINE</span><h2>Pipeline & source health.</h2></div><p>Hybrid similarity / clustering / TextRank / temporal burst / persistence / calibrated scoring</p></div>
         <div id="engine-summary" class="engine-summary">Ejecuta el research para ver métricas del pipeline.</div>
         <div id="source-health" class="source-health"></div>
       </section>
@@ -65,12 +65,12 @@
         </section>
 
         <aside class="trend-editor" id="trend-editor">
-          <div class="empty-editor"><span>✦</span><p>Selecciona “Editar” en una señal para ajustar su narrativa antes de publicar.</p></div>
+          <div class="empty-editor"><span class="icon-signal" aria-hidden="true"></span><p>Selecciona “Editar” en una señal para ajustar su narrativa antes de publicar.</p></div>
         </aside>
       </div>
 
       <section class="published-panel">
-        <div class="panel-head"><div><span class="admin-kicker">LIVE</span><h2>Edición publicada.</h2></div><a href="pulse.html" target="_blank">Abrir sitio ↗</a></div>
+        <div class="panel-head"><div><span class="admin-kicker">LIVE</span><h2>Edición publicada.</h2></div><a class="external-link" href="pulse.html" target="_blank">Abrir sitio</a></div>
         <div id="published-summary" class="published-summary">Todavía no hay una edición publicada en Blob.</div>
       </section>
     </section>
